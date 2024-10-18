@@ -30,17 +30,17 @@ public class GridMovement : MonoBehaviour
     public void Move(Vector3Int translation)
     {
         if (translation == Vector3Int.zero || interpolating) return;
-        position += translation;
+
+        Vector3Int nextPosition = position + translation;
+        DungeonTile nextTile = tilemap.GetTile<DungeonTile>(nextPosition);
+
+        if (nextTile == null || !nextTile.Walkable) return;
+
+        position = nextPosition;
         interpolationStartPosition = transform.position;
         interpolationTargetPosition = tilemap.CellToWorld(position);
         interpolationStartTime = Time.time;
         interpolating = true;
-
-        GameObject tileObject = tilemap.GetInstantiatedObject(position);
-        if (tileObject == null)
-            Debug.Log("Moving onto empty tile");
-        else
-            Debug.Log("Moving onto: " + tileObject.tag);
     }
 
     void InterpolatePosition()
