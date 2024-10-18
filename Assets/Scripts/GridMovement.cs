@@ -8,6 +8,7 @@ public class GridMovement : MonoBehaviour
     [SerializeField] Tilemap tilemap;
     [SerializeField] AnimationCurve movementInterpolationCurve;
     [SerializeField] float movementInterpolationDuration;
+    [SerializeField] Vector3 positionOffset;
 
     Vector3Int position;
     float interpolationStartTime;
@@ -38,7 +39,7 @@ public class GridMovement : MonoBehaviour
 
         position = nextPosition;
         interpolationStartPosition = transform.position;
-        interpolationTargetPosition = tilemap.CellToWorld(position);
+        interpolationTargetPosition = tilemap.CellToWorld(position) + positionOffset;
         interpolationStartTime = Time.time;
         interpolating = true;
     }
