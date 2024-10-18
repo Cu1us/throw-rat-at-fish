@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e61aacd0bbeca56d1a6c3ab1073ec04f, type: 3}
   m_Name: Wall
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
-  Walkable: 1
+  prefab: {fileID: 5178827395106043021, guid: cdba8c1d571c93947af1a24f2ef57120, type: 3}
+  Walkable: 0

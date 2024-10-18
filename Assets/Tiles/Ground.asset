@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e61aacd0bbeca56d1a6c3ab1073ec04f, type: 3}
   m_Name: Ground
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 8927962212010928859, guid: 5dc94d0a00a458848a52418dc5da27fe, type: 3}
   Walkable: 1
