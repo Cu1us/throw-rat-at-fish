@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class GridMovement : MonoBehaviour
 {
-    [SerializeField] Grid grid;
+    [SerializeField] Tilemap tilemap;
     [SerializeField] AnimationCurve movementInterpolationCurve;
     [SerializeField] float movementInterpolationDuration;
 
     Vector3Int position;
     float interpolationStartTime;
     Vector3 interpolationStartPosition;
+    Vector3 interpolationTargetPosition;
     bool interpolating = false;
 
     void Update()
@@ -30,15 +32,23 @@ public class GridMovement : MonoBehaviour
         if (translation == Vector3Int.zero || interpolating) return;
         position += translation;
         interpolationStartPosition = transform.position;
+        interpolationTargetPosition = tilemap.CellToWorld(position);
         interpolationStartTime = Time.time;
         interpolating = true;
+
+        GameObject tileObject = tilemap.GetInstantiatedObject(position);
+        if (tileObject == null)
+            Debug.Log("Moving onto empty tile");
+        else
+            Debug.Log("Moving onto: " + tileObject.tag);
     }
 
     void InterpolatePosition()
     {
         if (!interpolating) return;
         float progress = (Time.time - interpolationStartTime) / movementInterpolationDuration;
-        transform.position = Vector3.Lerp(interpolationStartPosition, grid.CellToWorld(position), movementInterpolationCurve.Evaluate(progress));
+
+        transform.position = Vector3.Lerp(interpolationStartPosition, interpolationTargetPosition, movementInterpolationCurve.Evaluate(progress));
         if (progress >= 1f) interpolating = false;
     }
 }
