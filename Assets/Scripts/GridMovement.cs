@@ -14,7 +14,7 @@ public class GridMovement : MonoBehaviour
 
     [SerializeField] Vector3 positionOffset;
 
-    public Vector3Int position;
+    [HideInInspector] public Vector3Int position;
     public Vector3 WorldPosition { get { return tilemap.CellToWorld(position) - positionOffset; } }
     float positionInterpolationStart;
     float rotationInterpolationStart;
@@ -39,7 +39,7 @@ public class GridMovement : MonoBehaviour
     }
     void Start()
     {
-        SetPosition(position);
+        SetPosition(tilemap.WorldToCell(transform.position));
     }
     public static Vector3Int DirectionToMovement(Direction direction)
     {

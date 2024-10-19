@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMovement))]
 public class PlayerAttack : MonoBehaviour
 {
+
     [SerializeField] GridMovement ratProjectile;
     enum RatState
     {
