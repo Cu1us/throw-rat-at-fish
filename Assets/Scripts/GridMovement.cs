@@ -27,7 +27,7 @@ public class GridMovement : MonoBehaviour
     protected bool rotating = false;
     public Direction facingDirection { get; protected set; }
 
-    Vector3Int failedToMoveOntoCell = new(-10000, 0, 0);
+    public Vector3Int failedToMoveOntoCell = new(-10000, 0, 0);
     public UnityEvent onMove;
 
     #region Direction manipulation

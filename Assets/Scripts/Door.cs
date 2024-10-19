@@ -20,6 +20,7 @@ public class Door : InteractableTile
             IsOpen = true;
             GetComponent<AudioSource>().PlayOneShot(OpenSuccessSound);
             GetComponent<MeshRenderer>().material = OpenedMaterial;
+            player.failedToMoveOntoCell = new(-10000, 0, 0);
             if (TryGetComponent(out Collider collider)) collider.enabled = false;
         }
         else GetComponent<AudioSource>().PlayOneShot(OpenFailSound);
