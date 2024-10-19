@@ -4,8 +4,7 @@ using System;
 public class EnemyMovement : GridMovement
 {
     [SerializeField] private PlayerMovement player;
-
-    private Vector3Int gridPosition;
+    
     private Vector3Int playerGridPosition;
 
     private Vector3Int arrayOffset;
@@ -21,7 +20,7 @@ public class EnemyMovement : GridMovement
     private void Start()
     {
         CreateArrayOffset();
-        lowestDistanceScore = CalculateDistance(gridPosition, playerGridPosition);
+        lowestDistanceScore = CalculateDistance(position, playerGridPosition);
         
         InitializeFirstCell();
     }
@@ -33,7 +32,7 @@ public class EnemyMovement : GridMovement
 
     private void InitializeFirstCell()
     {
-        explorationCell = new Cell(gridPosition, 0, CalculateDistance(gridPosition, playerGridPosition));
+        explorationCell = new Cell(position, 0, CalculateDistance(position, playerGridPosition));
     }
 
     private void OnEnable() => player.onMove.AddListener(FindLowestScore);
@@ -58,7 +57,7 @@ public class EnemyMovement : GridMovement
             }
         }
         
-        Move(gridPosition - explorationCell.position);
+        Move(position - explorationCell.position);
     }
     
     private (int, Cell) AddNeighboursToOpenList(Cell cell)
@@ -75,7 +74,7 @@ public class EnemyMovement : GridMovement
     
     private (int, Cell) GetLowestScore(Cell[] cells)
     {
-        int lowestNeighbourScore = CalculateDistance(gridPosition, playerGridPosition);
+        int lowestNeighbourScore = CalculateDistance(position, playerGridPosition);
         Cell checkedCell = null;
         
         foreach (Cell cell in cells)
@@ -102,7 +101,7 @@ public class EnemyMovement : GridMovement
         if (!tile.Walkable) 
             return null;
         
-        int startToCell = CalculateDistance(tempPosition, gridPosition);
+        int startToCell = CalculateDistance(tempPosition, position);
         int targetToCell = CalculateDistance(tempPosition, playerGridPosition);
 
         Cell newCell = new(tempPosition, startToCell, targetToCell);
