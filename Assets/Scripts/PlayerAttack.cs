@@ -20,16 +20,16 @@ public class PlayerAttack : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovement>();
 
-        if (ratState == RatState.FLYING)
-        {
-            ratProjectile.MoveForward();
-        }
     }
     void Update()
     {
         if (Input.GetButtonDown("Jump"))
         {
             Shoot();
+        }
+        if (ratState == RatState.FLYING)
+        {
+            ratProjectile.MoveForward();
         }
     }
 
