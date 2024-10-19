@@ -40,7 +40,9 @@ public class GridMovement : MonoBehaviour
     }
     void Start()
     {
-        SetPosition(tilemap.WorldToCell(transform.position));
+        Vector3Int startingPos = tilemap.WorldToCell(transform.position);
+        startingPos.z = 0;
+        SetPosition(startingPos);
     }
     public static Vector3Int DirectionToMovement(Direction direction)
     {
