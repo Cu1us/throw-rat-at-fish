@@ -38,6 +38,12 @@ public class GridMovement : MonoBehaviour
         South,
         West
     }
+    public enum TryWalkOnTileResult
+    {
+        Stop,
+        StopButCanPassNextTime,
+        PassThrough
+    }
     void Start()
     {
         Vector3Int startingPos = tilemap.WorldToCell(transform.position);
@@ -110,9 +116,10 @@ public class GridMovement : MonoBehaviour
         Vector3Int nextPosition = position + translation;
 
         if (nextPosition == failedToMoveOntoCell) return;
-        if (!TryWalkOnTile(nextPosition))
+        TryWalkOnTileResult canWalk = TryWalkOnTile(nextPosition);
+        if (canWalk != TryWalkOnTileResult.PassThrough)
         {
-            failedToMoveOntoCell = nextPosition;
+            if (canWalk != TryWalkOnTileResult.StopButCanPassNextTime) failedToMoveOntoCell = nextPosition;
             return;
         };
 
@@ -124,11 +131,11 @@ public class GridMovement : MonoBehaviour
         failedToMoveOntoCell = new Vector3Int(-10000, 0, 0);
         onMove?.Invoke();
     }
-    protected virtual bool TryWalkOnTile(Vector3Int position)
+    protected virtual TryWalkOnTileResult TryWalkOnTile(Vector3Int position)
     {
         DungeonTile nextTile = tilemap.GetTile<DungeonTile>(position);
 
-        return nextTile != null && nextTile.Walkable;
+        return nextTile != null && nextTile.Walkable ? TryWalkOnTileResult.PassThrough : TryWalkOnTileResult.Stop;
     }
     public void MoveForward()
     {

@@ -11,9 +11,9 @@ public class Door : InteractableTile
     [SerializeField] AudioClip OpenFailSound;
     [SerializeField] AudioClip OpenSuccessSound;
     [SerializeField] Material OpenedMaterial;
-    public override bool OnPlayerMoveOnto(PlayerMovement player)
+    public override GridMovement.TryWalkOnTileResult OnPlayerMoveOnto(PlayerMovement player)
     {
-        if (IsOpen) return true;
+        if (IsOpen) return GridMovement.TryWalkOnTileResult.PassThrough;
         if (player.Keys > 0)
         {
             player.Keys -= 1;
@@ -22,8 +22,9 @@ public class Door : InteractableTile
             GetComponent<MeshRenderer>().material = OpenedMaterial;
             player.failedToMoveOntoCell = new(-10000, 0, 0);
             if (TryGetComponent(out Collider collider)) collider.enabled = false;
+            return GridMovement.TryWalkOnTileResult.StopButCanPassNextTime;
         }
         else GetComponent<AudioSource>().PlayOneShot(OpenFailSound);
-        return false;
+        return GridMovement.TryWalkOnTileResult.Stop;
     }
 }
