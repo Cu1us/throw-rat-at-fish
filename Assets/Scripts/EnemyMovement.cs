@@ -11,8 +11,8 @@ public class Pathfinder : MonoBehaviour
     // TODO Calculate the new distance in each non-diagonal cell and how far away it is from the original enemy cell
     // TODO Repeat this process until it finds the best calculated path
 
-    private Vector3Int gridPosition = new();
-    private Vector3Int playerGridPosition = new();
+    private Vector3Int gridPosition;
+    private Vector3Int playerGridPosition;
 
     private Cell[,] openCells;
     private Cell[,] closedCells;
@@ -22,20 +22,22 @@ public class Pathfinder : MonoBehaviour
         // TODO initialize size of cell arrays.
     }
 
-    private void FindLowestOpenCellScore()
+    private void FindLowestOpenCellScore(Cell cell)
     {
-        
+        // TODO Create openCells
+        Cell[] temp = new Cell[4];
+        temp[(int)GridMovement.Direction.North]       
     }
     
-    private int CalculateInitialDistance()
+    private int CalculateDistance()
     {
-        return (int)((gridPosition - playerGridPosition).magnitude * 10);
+        return Math.Abs(gridPosition.x - playerGridPosition.x) + Math.Abs(gridPosition.y - playerGridPosition.y);
     }
 }
 
 public struct Cell
 {
-    private Vector3Int position;
+    public Vector3Int position;
     
     private int fromDistance;
     private int toDistance;
