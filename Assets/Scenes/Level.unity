@@ -147,7 +147,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 81219321}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
@@ -298,36 +298,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4144811712059837265, guid: a7b23230b12b0fe4aa24d226d3c32a17,
-        type: 3}
-      propertyPath: tilemap
-      value: 
-      objectReference: {fileID: 1358077150}
     - target: {fileID: 5475546015430137429, guid: a7b23230b12b0fe4aa24d226d3c32a17,
         type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8732141810394272820, guid: a7b23230b12b0fe4aa24d226d3c32a17,
+    - target: {fileID: 7403432197663452863, guid: a7b23230b12b0fe4aa24d226d3c32a17,
         type: 3}
-      propertyPath: m_BackGroundColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8732141810394272820, guid: a7b23230b12b0fe4aa24d226d3c32a17,
-        type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8732141810394272820, guid: a7b23230b12b0fe4aa24d226d3c32a17,
-        type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8732141810394272820, guid: a7b23230b12b0fe4aa24d226d3c32a17,
-        type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: <tilemap>k__BackingField
+      value: 
+      objectReference: {fileID: 1358077150}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
