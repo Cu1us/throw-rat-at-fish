@@ -132,6 +132,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Keys: 0
+  KeycardHandUI: {fileID: 0}
 --- !u!114 &8004175378257352428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,14 +192,14 @@ Camera:
   serializedVersion: 2
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
-  m_projectionMatrixMode: 1
+  m_projectionMatrixMode: 2
   m_GateFitMode: 2
   m_FOVAxisMode: 0
   m_Iso: 200
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 50
+  m_FocalLength: 20.78461
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
@@ -213,7 +214,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 60.000004
   orthographic: 0
   orthographic size: 1.0983334
   m_Depth: -1

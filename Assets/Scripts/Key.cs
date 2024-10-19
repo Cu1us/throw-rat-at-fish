@@ -12,13 +12,13 @@ public class Key : InteractableTile
     {
         if (!pickedUp) RotationObject.Rotate(new Vector3(0, RotationSpeed * Time.deltaTime, 0));
     }
-    public override bool OnPlayerMoveOnto(PlayerMovement player)
+    public override GridMovement.TryWalkOnTileResult OnPlayerMoveOnto(PlayerMovement player)
     {
-        if (pickedUp) return true;
+        if (pickedUp) return GridMovement.TryWalkOnTileResult.PassThrough;
         player.Keys++;
         pickedUp = true;
         GetComponent<AudioSource>().Play();
         RotationObject.gameObject.SetActive(false);
-        return true;
+        return GridMovement.TryWalkOnTileResult.StopButCanPassNextTime;
     }
 }

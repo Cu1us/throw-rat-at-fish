@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class InteractableTile : MonoBehaviour
 {
-    public abstract bool OnPlayerMoveOnto(PlayerMovement player);
+    public abstract GridMovement.TryWalkOnTileResult OnPlayerMoveOnto(PlayerMovement player);
 }

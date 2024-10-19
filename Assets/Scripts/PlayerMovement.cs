@@ -22,7 +22,7 @@ public class PlayerMovement : GridMovement
         KeycardHandUI.enabled = Keys > 0;
         base.Update();
     }
-    protected override bool TryWalkOnTile(Vector3Int position)
+    protected override TryWalkOnTileResult TryWalkOnTile(Vector3Int position)
     {
         GameObject tileObject = tilemap.GetInstantiatedObject(position);
         if (tileObject.TryGetComponent(out InteractableTile interactableTile))
