@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="637abd54-c878-424c-8f67-4b81a91e2988" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.throw-rat-at-fish/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.throw-rat-at-fish/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pathfinder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pathfinder.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyMovement.cs.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +88,7 @@
       <option name="presentableId" value="Default" />
       <updated>1729271937962</updated>
       <workItem from="1729271940748" duration="4030000" />
-      <workItem from="1729319066307" duration="3944000" />
+      <workItem from="1729319066307" duration="14113000" />
     </task>
     <servers />
   </component>

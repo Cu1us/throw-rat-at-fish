@@ -1,55 +1,138 @@
 using UnityEngine;
 using System;
 
-public class Pathfinder : MonoBehaviour
+public class EnemyMovement : GridMovement
 {
-    [SerializeField] private GridMovement player;
-    
-    // TODO Get player and enemy positions in Vector3Int
-    // TODO Compare the distance between the two
-    
-    // TODO Calculate the new distance in each non-diagonal cell and how far away it is from the original enemy cell
-    // TODO Repeat this process until it finds the best calculated path
+    [SerializeField] private PlayerMovement player;
 
     private Vector3Int gridPosition;
     private Vector3Int playerGridPosition;
 
+    private Vector3Int arrayOffset;
+
     private Cell[,] openCells;
     private Cell[,] closedCells;
 
-    private void InitializeOpenCell()
-    {
-        // TODO initialize size of cell arrays.
-    }
+    private int lowestDistanceScore;
 
-    private void FindLowestOpenCellScore(Cell cell)
+    private Cell explorationCell;
+    private Cell nextCell;
+
+    private void Start()
     {
-        // TODO Create openCells
-        Cell[] temp = new Cell[4];
-        temp[(int)GridMovement.Direction.North]       
+        CreateArrayOffset();
+        lowestDistanceScore = CalculateDistance(gridPosition, playerGridPosition);
+        
+        InitializeFirstCell();
     }
     
-    private int CalculateDistance()
+    private void CreateArrayOffset()
     {
-        return Math.Abs(gridPosition.x - playerGridPosition.x) + Math.Abs(gridPosition.y - playerGridPosition.y);
+        arrayOffset = tilemap.WorldToCell(new Vector3(0, 0, 0)) - tilemap.cellBounds.min;
+    }
+
+    private void InitializeFirstCell()
+    {
+        explorationCell = new Cell(gridPosition, 0, CalculateDistance(gridPosition, playerGridPosition));
+    }
+
+    private void OnEnable() => player.onMove.AddListener(FindLowestScore);
+
+    private void OnDisable() => player.onMove.RemoveListener(FindLowestScore);
+    
+    private void FindLowestScore()
+    {
+        (int lowestNeighbourScore, Cell checkedCell) = AddNeighboursToOpenList(explorationCell);
+
+        if (lowestNeighbourScore < lowestDistanceScore)
+        {
+            lowestDistanceScore = lowestNeighbourScore;
+            explorationCell = checkedCell;
+        }
+        else
+        {
+            foreach (Cell openCell in openCells)
+            {
+                if (openCell.distanceScore < lowestDistanceScore)
+                    lowestDistanceScore = openCell.distanceScore;
+            }
+        }
+        
+        Move(gridPosition - explorationCell.position);
+    }
+    
+    private (int, Cell) AddNeighboursToOpenList(Cell cell)
+    {
+        Cell[] neighbours = new Cell[4];
+        
+        neighbours[0] = CreateOpenCell(cell, Vector3Int.up);
+        neighbours[1] = CreateOpenCell(cell, Vector3Int.right);
+        neighbours[2] = CreateOpenCell(cell, Vector3Int.down);
+        neighbours[3] = CreateOpenCell(cell, Vector3Int.left);
+        
+        return GetLowestScore(neighbours);
+    }
+    
+    private (int, Cell) GetLowestScore(Cell[] cells)
+    {
+        int lowestNeighbourScore = CalculateDistance(gridPosition, playerGridPosition);
+        Cell checkedCell = null;
+        
+        foreach (Cell cell in cells)
+        {
+            if (cell is null || cell.distanceScore >= lowestDistanceScore)
+                continue;
+            
+            lowestNeighbourScore = cell.distanceScore;
+            checkedCell = cell;
+        }
+        
+        return (lowestNeighbourScore, checkedCell);
+    }
+
+    private Cell CreateOpenCell(Cell cell, Vector3Int direction)
+    {
+        Vector3Int tempPosition = new(
+            arrayOffset.x + cell.position.x + direction.x, 
+            arrayOffset.y + cell.position.y + direction.y, 
+            arrayOffset.z + cell.position.z + direction.z);
+
+        DungeonTile tile = tilemap.GetTile<DungeonTile>(tempPosition);
+
+        if (!tile.Walkable) 
+            return null;
+        
+        int startToCell = CalculateDistance(tempPosition, gridPosition);
+        int targetToCell = CalculateDistance(tempPosition, playerGridPosition);
+
+        Cell newCell = new(tempPosition, startToCell, targetToCell);
+        
+        openCells[cell.position.x + direction.x, cell.position.y + direction.y] = newCell;
+
+        return newCell;
+    }
+    
+    private int CalculateDistance(Vector3Int start, Vector3Int target)
+    {
+        return (Math.Abs(start.x - target.x) + Math.Abs(start.y - target.y)) * 10;
     }
 }
 
-public struct Cell
+public class Cell
 {
     public Vector3Int position;
     
-    private int fromDistance;
-    private int toDistance;
+    private int distanceFromStart;
+    private int distanceFromTarget;
 
     public int distanceScore;
 
-    public Cell(Vector3Int position, int fromDistance, int toDistance)
+    public Cell(Vector3Int position, int distanceFromStart, int distanceFromTarget)
     {
         this.position = position;
-        this.fromDistance = fromDistance * 10;
-        this.toDistance = toDistance * 10;
+        this.distanceFromStart = distanceFromStart;
+        this.distanceFromTarget = distanceFromTarget;
 
-        distanceScore = this.fromDistance + this.toDistance;
+        distanceScore = this.distanceFromStart + this.distanceFromTarget;
     }
 }
