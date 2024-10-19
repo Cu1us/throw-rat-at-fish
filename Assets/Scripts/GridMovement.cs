@@ -7,14 +7,14 @@ using UnityEngine.Tilemaps;
 
 public class GridMovement : MonoBehaviour
 {
-    [SerializeField] Tilemap tilemap;
+    [field: SerializeReference] public Tilemap tilemap { get; protected set; }
     [SerializeField] AnimationCurve movementInterpolationCurve;
     [SerializeField] float movementInterpolationDuration;
     [SerializeField] float rotationInterpolationDuration;
 
     [SerializeField] Vector3 positionOffset;
 
-    Vector3Int position;
+    public Vector3Int position;
     float positionInterpolationStart;
     float rotationInterpolationStart;
 
@@ -22,9 +22,9 @@ public class GridMovement : MonoBehaviour
     Vector3 posInterpolationTargetValue;
     Quaternion rotInterpolationStartValue;
     Quaternion rotInterpolationTargetValue;
-    bool moving = false;
-    bool rotating = false;
-    Direction facingDirection;
+    protected bool moving = false;
+    protected bool rotating = false;
+    protected Direction facingDirection;
 
     #region Direction manipulation
     public enum Direction
@@ -34,7 +34,7 @@ public class GridMovement : MonoBehaviour
         South,
         West
     }
-    Vector3Int DirectionToMovement(Direction direction)
+    public static Vector3Int DirectionToMovement(Direction direction)
     {
         return direction switch
         {
@@ -45,7 +45,7 @@ public class GridMovement : MonoBehaviour
             _ => Vector3Int.zero
         };
     }
-    Quaternion DirectionToQuaternion(Direction direction)
+    public static Quaternion DirectionToQuaternion(Direction direction)
     {
         return direction switch
         {
@@ -62,7 +62,7 @@ public class GridMovement : MonoBehaviour
     /// <param name="direction">The starting direction</param>
     /// <param name="clockwise">If false, rotates counterclockwise</param>
     /// <returns></returns>
-    Direction RotateDirection(Direction direction, bool clockwise = true)
+    public static Direction RotateDirection(Direction direction, bool clockwise = true)
     {
         return direction switch
         {
@@ -75,19 +75,8 @@ public class GridMovement : MonoBehaviour
     }
     #endregion
 
-    void Update()
+    protected virtual void Update()
     {
-        int movementInput = Mathf.RoundToInt(Input.GetAxisRaw("Vertical"));
-        int rotationInput = Mathf.RoundToInt(Input.GetAxisRaw("Horizontal"));
-
-        if (movementInput == 1)
-            Move(DirectionToMovement(facingDirection));
-        else if (movementInput == -1)
-            Move(-DirectionToMovement(facingDirection));
-
-        if (rotationInput != 0)
-            Rotate(clockwise: rotationInput == -1);
-
         InterpolatePosition();
         InterpolateRotation();
     }
@@ -106,6 +95,10 @@ public class GridMovement : MonoBehaviour
         posInterpolationTargetValue = tilemap.CellToWorld(position) + positionOffset;
         positionInterpolationStart = Time.time;
         moving = true;
+    }
+    public void MoveForward()
+    {
+        Move(DirectionToMovement(facingDirection));
     }
     public void RotateTo(Direction toDirection)
     {
