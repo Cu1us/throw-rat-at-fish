@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7403432197663452863}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   movementInterpolationDuration: 0.25
   rotationInterpolationDuration: 0.25
-  positionOffset: {x: 0, y: 0, z: 0}
+  positionOffset: {x: 0.5, y: 0, z: 0.5}
   position: {x: 0, y: 0, z: 0}
 --- !u!1 &6860512087859258212
 GameObject:
