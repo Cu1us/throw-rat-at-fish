@@ -124,8 +124,7 @@ public class GridMovement : MonoBehaviour
         if (!rotating) return;
         float progress = (Time.time - rotationInterpolationStart) / rotationInterpolationDuration;
 
-        float rotationZ = Mathf.Lerp(rotInterpolationStartValue, rotInterpolationTargetValue, movementInterpolationCurve.Evaluate(progress));
-        transform.eulerAngles = new Vector3(0, 0, rotationZ);
+        transform.rotation = Quaternion.Lerp(rotInterpolationStartValue, rotInterpolationTargetValue, movementInterpolationCurve.Evaluate(progress));
         if (progress >= 1f) rotating = false;
     }
 }
