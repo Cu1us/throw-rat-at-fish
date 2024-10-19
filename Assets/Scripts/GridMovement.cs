@@ -100,6 +100,10 @@ public class GridMovement : MonoBehaviour
     {
         Move(DirectionToMovement(facingDirection));
     }
+    public void MoveInDirection(Direction direction)
+    {
+        Move(DirectionToMovement(direction));
+    }
     public void RotateTo(Direction toDirection)
     {
         if (rotating) return;
