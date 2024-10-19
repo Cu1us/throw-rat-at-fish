@@ -27,6 +27,7 @@ public class GridMovement : MonoBehaviour
     protected bool rotating = false;
     public Direction facingDirection { get; protected set; }
 
+    Vector3Int failedToMoveOntoCell = new(-10000, 0, 0);
     public UnityEvent onMove;
 
     #region Direction manipulation
@@ -105,16 +106,27 @@ public class GridMovement : MonoBehaviour
         if (translation == Vector3Int.zero || moving) return;
 
         Vector3Int nextPosition = position + translation;
-        DungeonTile nextTile = tilemap.GetTile<DungeonTile>(nextPosition);
 
-        if (nextTile == null || !nextTile.Walkable) return;
+        if (nextPosition == failedToMoveOntoCell) return;
+        if (!TryWalkOnTile(nextPosition))
+        {
+            failedToMoveOntoCell = nextPosition;
+            return;
+        };
 
         position = nextPosition;
         posInterpolationStartValue = transform.position;
         posInterpolationTargetValue = tilemap.CellToWorld(position) + positionOffset;
         positionInterpolationStart = Time.time;
         moving = true;
+        failedToMoveOntoCell = new Vector3Int(-10000, 0, 0);
         onMove?.Invoke();
+    }
+    protected virtual bool TryWalkOnTile(Vector3Int position)
+    {
+        DungeonTile nextTile = tilemap.GetTile<DungeonTile>(position);
+
+        return nextTile != null && nextTile.Walkable;
     }
     public void MoveForward()
     {

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : GridMovement
 {
+    public byte Keys = 0;
     protected override void Update()
     {
         int movementInput = Mathf.RoundToInt(Input.GetAxisRaw("Vertical"));
@@ -18,5 +19,14 @@ public class PlayerMovement : GridMovement
             Rotate(clockwise: rotationInput == -1);
 
         base.Update();
+    }
+    protected override bool TryWalkOnTile(Vector3Int position)
+    {
+        GameObject tileObject = tilemap.GetInstantiatedObject(position);
+        if (tileObject.TryGetComponent(out InteractableTile interactableTile))
+        {
+            return interactableTile.OnPlayerMoveOnto(this);
+        }
+        return base.TryWalkOnTile(position);
     }
 }
