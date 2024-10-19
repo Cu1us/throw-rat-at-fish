@@ -1,5 +1,8 @@
 using UnityEngine;
 using System;
+using Vector3Int = UnityEngine.Vector3Int;
+using System.Collections.Generic;
+using System.Linq;
 
 public class EnemyMovement : GridMovement
 {
@@ -17,11 +20,6 @@ public class EnemyMovement : GridMovement
         arrayOffset = tilemap.cellBounds.size / 2;
     }
 
-    private Cell InitializeFirstCell()
-    {
-        return new Cell(position, 0, CalculateDistance(position, player.position));
-    }
-
     private void OnEnable() => player.onMove.AddListener(FindLowestScore);
 
     private void OnDisable() => player.onMove.RemoveListener(FindLowestScore);
@@ -30,14 +28,15 @@ public class EnemyMovement : GridMovement
     {
         Cell[,] openCells = new Cell[tilemap.cellBounds.size.x, tilemap.cellBounds.size.y];
         Cell[,] closedCells = new Cell[tilemap.cellBounds.size.x, tilemap.cellBounds.size.y];
-
-        Cell nextCell;
         
         Cell startCell = InitializeFirstCell();
         Cell cellToExplore = startCell;
+
+        int ranTimes = 0;
         
-        while (cellToExplore.position != player.position)
+        while (cellToExplore.position != player.position && ranTimes < 1000)
         {
+            ranTimes++;
             // Initially sets the lowest distance score to the highest possible so it will search all options.
             int lowestDistanceScore = (openCells.GetLength(0) + openCells.GetLength(1)) * 10;
             Cell neighbourCell = AddNeighboursToOpenList(openCells, cellToExplore, lowestDistanceScore);
@@ -46,15 +45,14 @@ public class EnemyMovement : GridMovement
             {
                 foreach (Cell openCell in openCells)
                 {
-                    lowestDistanceScore = CalculateDistance(position, player.position);
-                    
                     if (openCell is null)
                         continue;
-                
-                    if (openCell.distanceScore < lowestDistanceScore)
-                    {
-                        cellToExplore = openCell;
-                    }
+
+                    if (openCell.distanceScore >= lowestDistanceScore) 
+                        continue;
+                    
+                    lowestDistanceScore = openCell.distanceScore;
+                    cellToExplore = openCell;
                 }
             }
             else
@@ -64,13 +62,37 @@ public class EnemyMovement : GridMovement
 
             int x = arrayOffset.x + cellToExplore.position.x;
             int y = arrayOffset.y + cellToExplore.position.y;
-
-            openCells[x, y] = null;
             
             closedCells[x, y] = cellToExplore;
         }
+
+        Vector3Int direction = new();
+        List<Cell> options = new();
         
-        Move(position - startCell.position);
+        foreach (Cell closedCell in closedCells)
+        {
+            if (closedCell is null)
+                continue;
+            
+            Vector3Int middlePoint = startCell.position - closedCell.position;
+            
+            if (middlePoint is not { x: <= 1 and >= -1, y: <= 1 and >= -1 }) 
+                continue;
+            
+            options.Add(closedCell);
+        }
+        
+        Cell nextCell = options.Aggregate((cellWithLowestTarget, cell) => cell.distanceFromTarget <= cellWithLowestTarget.distanceFromTarget ? cell : cellWithLowestTarget);
+        
+        direction = nextCell.position - startCell.position;
+        Debug.Log(direction);
+        
+        Move(direction);
+    }
+    
+    private Cell InitializeFirstCell()
+    {
+        return new Cell(new Vector3Int(position.x, position.y, 0), 0, CalculateDistance(position, player.position));
     }
     
     private Cell AddNeighboursToOpenList(Cell[,] cells, Cell cell, int distanceScore)
@@ -93,7 +115,8 @@ public class EnemyMovement : GridMovement
         {
             if (cell is null || cell.distanceScore >= distanceScore)
                 continue;
-            
+
+            distanceScore = cell.distanceScore;
             checkedCell = cell;
         }
         
@@ -102,12 +125,12 @@ public class EnemyMovement : GridMovement
 
     private Cell CreateOpenCell(Cell[,] cells, Cell cell, Vector3Int direction)
     {
-        Vector3Int tempPosition = new(
+        Vector3Int futurePosition = new(
             cell.position.x + direction.x,
-            0,
-            cell.position.y + direction.y);
+            cell.position.y + direction.y,
+            0);
 
-        DungeonTile tile = tilemap.GetTile<DungeonTile>(tempPosition);
+        DungeonTile tile = tilemap.GetTile<DungeonTile>(futurePosition);
 
         if (tile is null)
             return null;
@@ -115,10 +138,10 @@ public class EnemyMovement : GridMovement
         if (!tile.Walkable) 
             return null;
         
-        int startToCell = CalculateDistance(tempPosition, position);
-        int targetToCell = CalculateDistance(tempPosition, player.position);
+        int startToCell = CalculateDistance(position, futurePosition);
+        int targetToCell = CalculateDistance(futurePosition, player.position);
 
-        Cell newCell = new(tempPosition, startToCell, targetToCell);
+        Cell newCell = new(futurePosition, startToCell, targetToCell);
         
         cells[arrayOffset.x + cell.position.x + direction.x, arrayOffset.y + cell.position.z + direction.y] = newCell;
 
@@ -136,7 +159,7 @@ public class Cell
     public Vector3Int position;
     
     private int distanceFromStart;
-    private int distanceFromTarget;
+    public int distanceFromTarget;
 
     public int distanceScore;
 

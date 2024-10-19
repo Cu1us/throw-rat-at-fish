@@ -4859,7 +4859,7 @@ PrefabInstance:
     - target: {fileID: 940668752440770266, guid: 65fe8ddbc0e2dd04787ab07cb08a080b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 940668752440770266, guid: 65fe8ddbc0e2dd04787ab07cb08a080b,
         type: 3}
@@ -4908,9 +4908,69 @@ PrefabInstance:
       objectReference: {fileID: 1993014025}
     - target: {fileID: 6137875463023630377, guid: 65fe8ddbc0e2dd04787ab07cb08a080b,
         type: 3}
+      propertyPath: position.x
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6137875463023630377, guid: 65fe8ddbc0e2dd04787ab07cb08a080b,
+        type: 3}
+      propertyPath: position.y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6137875463023630377, guid: 65fe8ddbc0e2dd04787ab07cb08a080b,
+        type: 3}
+      propertyPath: position.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6137875463023630377, guid: 65fe8ddbc0e2dd04787ab07cb08a080b,
+        type: 3}
+      propertyPath: positionOffset.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6137875463023630377, guid: 65fe8ddbc0e2dd04787ab07cb08a080b,
+        type: 3}
+      propertyPath: positionOffset.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6137875463023630377, guid: 65fe8ddbc0e2dd04787ab07cb08a080b,
+        type: 3}
       propertyPath: <tilemap>k__BackingField
       value: 
       objectReference: {fileID: 1358077150}
+    - target: {fileID: 6137875463023630377, guid: 65fe8ddbc0e2dd04787ab07cb08a080b,
+        type: 3}
+      propertyPath: onMove.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6137875463023630377, guid: 65fe8ddbc0e2dd04787ab07cb08a080b,
+        type: 3}
+      propertyPath: onMove.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6137875463023630377, guid: 65fe8ddbc0e2dd04787ab07cb08a080b,
+        type: 3}
+      propertyPath: onMove.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1916993714}
+    - target: {fileID: 6137875463023630377, guid: 65fe8ddbc0e2dd04787ab07cb08a080b,
+        type: 3}
+      propertyPath: onMove.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6137875463023630377, guid: 65fe8ddbc0e2dd04787ab07cb08a080b,
+        type: 3}
+      propertyPath: onMove.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FindLowestScore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6137875463023630377, guid: 65fe8ddbc0e2dd04787ab07cb08a080b,
+        type: 3}
+      propertyPath: onMove.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: EnemyMovement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6137875463023630377, guid: 65fe8ddbc0e2dd04787ab07cb08a080b,
+        type: 3}
+      propertyPath: onMove.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4922,6 +4982,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1916993712}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1916993714 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6137875463023630377, guid: 65fe8ddbc0e2dd04787ab07cb08a080b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1916993712}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a420f485616b4e48a1ed28deeab624d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1993014024 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5475546015430137429, guid: a7b23230b12b0fe4aa24d226d3c32a17,
@@ -4953,6 +5025,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ratProjectile: {fileID: 212766529}
+  HandAnimator: {fileID: 0}
 --- !u!222 &42968876784808095
 CanvasRenderer:
   m_ObjectHideFlags: 0
