@@ -15,7 +15,7 @@ public class GridMovement : MonoBehaviour
     [SerializeField] Vector3 positionOffset;
 
     [HideInInspector] public Vector3Int position;
-    public Vector3 WorldPosition { get { return tilemap.CellToWorld(position) - positionOffset; } }
+    public Vector3 WorldPosition { get { return tilemap.CellToWorld(position) + positionOffset; } }
     float positionInterpolationStart;
     float rotationInterpolationStart;
 

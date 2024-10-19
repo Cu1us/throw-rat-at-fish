@@ -6,21 +6,15 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
 
-    [SerializeField] GridMovement ratProjectile;
-    enum RatState
-    {
-        IN_HAND,
-        FLYING,
-        SPLAT,
-        RUNNING
-    }
-    RatState ratState = RatState.IN_HAND;
+    [SerializeField] RatProjectile ratProjectile;
+    bool ratInHand = true;
 
     PlayerMovement playerMovement;
     void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
-
+        ratInHand = true;
+        ratProjectile.onReturnToPlayer += OnRatReturn;
     }
     void Update()
     {
@@ -28,20 +22,22 @@ public class PlayerAttack : MonoBehaviour
         {
             Shoot();
         }
-        if (ratState == RatState.FLYING)
-        {
-            ratProjectile.MoveForward();
-        }
     }
 
     void Shoot()
     {
-        if (ratState != RatState.IN_HAND) return;
+        if (ratInHand)
+        {
+            ratProjectile.gameObject.SetActive(true);
+            ratProjectile.transform.position = playerMovement.WorldPosition;
+            ratProjectile.transform.rotation = GridMovement.DirectionToQuaternion(playerMovement.facingDirection);
+            ratProjectile.Throw();
+            ratInHand = false;
+        }
+    }
 
-        ratProjectile.SetPosition(playerMovement.position);
-        ratProjectile.SetRotation(playerMovement.facingDirection);
-        ratProjectile.gameObject.SetActive(true);
-
-        ratState = RatState.FLYING;
+    void OnRatReturn()
+    {
+        ratInHand = true;
     }
 }
