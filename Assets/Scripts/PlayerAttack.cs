@@ -39,5 +39,6 @@ public class PlayerAttack : MonoBehaviour
     void OnRatReturn()
     {
         ratInHand = true;
+        ratProjectile.transform.parent = transform;
     }
 }

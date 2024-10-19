@@ -34,10 +34,9 @@ public class RatProjectile : MonoBehaviour
                 {
 
                 }
-                transform.position = hitInfo.point;
+                transform.position = hitInfo.point + hitInfo.normal * 0.01f;
                 transform.parent = hitInfo.collider.transform;
                 ratState = RatState.SPLAT;
-                Debug.Log($"Hit: {hitInfo.point} point, {hitInfo.collider.gameObject.name}");
                 animator.Play("Splat");
                 Invoke(nameof(StartRunning), 0.5f);
             }
@@ -50,6 +49,7 @@ public class RatProjectile : MonoBehaviour
         {
             Vector3 targetPosition = new(player.transform.position.x, transform.position.y, player.transform.position.z);
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, runningSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Euler(-player.transform.eulerAngles);
             if (Vector3.Distance(transform.position, targetPosition) < 0.5f)
             {
                 ratState = RatState.IN_HAND;
