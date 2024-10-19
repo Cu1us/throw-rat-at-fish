@@ -1,8 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Tilemaps;
 
 public class GridMovement : MonoBehaviour
@@ -25,6 +25,8 @@ public class GridMovement : MonoBehaviour
     protected bool moving = false;
     protected bool rotating = false;
     protected Direction facingDirection;
+
+    public UnityEvent onMove;
 
     #region Direction manipulation
     public enum Direction
@@ -95,6 +97,7 @@ public class GridMovement : MonoBehaviour
         posInterpolationTargetValue = tilemap.CellToWorld(position) + positionOffset;
         positionInterpolationStart = Time.time;
         moving = true;
+        onMove?.Invoke();
     }
     public void MoveForward()
     {
