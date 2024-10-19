@@ -25,22 +25,23 @@ public class GridMovement : MonoBehaviour
     bool moving = false;
     bool rotating = false;
     Direction facingDirection;
-    enum Direction
+
+    #region Direction manipulation
+    public enum Direction
     {
         North,
         East,
         South,
         West
     }
-
     Vector3Int DirectionToMovement(Direction direction)
     {
         return direction switch
         {
-            Direction.North => Vector3Int.forward,
-            Direction.East => Vector3Int.right,
-            Direction.West => Vector3Int.left,
-            Direction.South => Vector3Int.back,
+            Direction.North => Vector3Int.up,
+            Direction.East => Vector3Int.left,
+            Direction.West => Vector3Int.right,
+            Direction.South => Vector3Int.down,
             _ => Vector3Int.zero
         };
     }
@@ -49,32 +50,43 @@ public class GridMovement : MonoBehaviour
         return direction switch
         {
             Direction.North => Quaternion.Euler(0, 0, 0),
-            Direction.East => Quaternion.Euler(0, 0, 270),
-            Direction.West => Quaternion.Euler(0, 0, 90),
-            Direction.South => Quaternion.Euler(0, 0, 180),
+            Direction.East => Quaternion.Euler(0, 270, 0),
+            Direction.West => Quaternion.Euler(0, 90, 0),
+            Direction.South => Quaternion.Euler(0, 180, 0),
             _ => Quaternion.identity
         };
     }
-    /*Direction RotateDirection(Direction direction, bool reverse)
+    /// <summary>
+    /// Rotates a direction either clockwise or counterclockwise
+    /// </summary>
+    /// <param name="direction">The starting direction</param>
+    /// <param name="clockwise">If false, rotates counterclockwise</param>
+    /// <returns></returns>
+    Direction RotateDirection(Direction direction, bool clockwise = true)
     {
         return direction switch
         {
-            Direction.North => Quaternion.Euler(0, 0, 0),
-            Direction.East => Quaternion.Euler(0, 0, 270),
-            Direction.West => Quaternion.Euler(0, 0, 90),
-            Direction.South => Quaternion.Euler(0, 0, 180),
-            _ => Quaternion.identity
+            Direction.North => clockwise ? Direction.East : Direction.West,
+            Direction.East => clockwise ? Direction.South : Direction.North,
+            Direction.West => clockwise ? Direction.North : Direction.South,
+            Direction.South => clockwise ? Direction.West : Direction.East,
+            _ => Direction.North
         };
-    }*/
-
+    }
+    #endregion
 
     void Update()
     {
         int movementInput = Mathf.RoundToInt(Input.GetAxisRaw("Vertical"));
+        int rotationInput = Mathf.RoundToInt(Input.GetAxisRaw("Horizontal"));
+
         if (movementInput == 1)
             Move(DirectionToMovement(facingDirection));
         else if (movementInput == -1)
             Move(-DirectionToMovement(facingDirection));
+
+        if (rotationInput != 0)
+            Rotate(clockwise: rotationInput == -1);
 
         InterpolatePosition();
         InterpolateRotation();
@@ -95,21 +107,21 @@ public class GridMovement : MonoBehaviour
         positionInterpolationStart = Time.time;
         moving = true;
     }
-    /*public void Rotate(Direction toDirection)
+    public void RotateTo(Direction toDirection)
     {
-        if (translation == Vector3Int.zero || moving) return;
+        if (rotating) return;
 
-        Vector3Int nextPosition = position + translation;
-        DungeonTile nextTile = tilemap.GetTile<DungeonTile>(nextPosition);
+        rotInterpolationStartValue = transform.rotation;
+        rotInterpolationTargetValue = DirectionToQuaternion(toDirection);
+        rotationInterpolationStart = Time.time;
 
-        if (nextTile == null || !nextTile.Walkable) return;
-
-        position = nextPosition;
-        posInterpolationStartValue = transform.position;
-        posInterpolationTargetValue = tilemap.CellToWorld(position) + positionOffset;
-        positionInterpolationStart = Time.time;
-        moving = true;
-    }*/
+        facingDirection = toDirection;
+        rotating = true;
+    }
+    public void Rotate(bool clockwise)
+    {
+        RotateTo(RotateDirection(facingDirection, clockwise));
+    }
 
     void InterpolatePosition()
     {
