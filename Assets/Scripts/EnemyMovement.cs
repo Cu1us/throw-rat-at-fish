@@ -7,9 +7,6 @@ public class EnemyMovement : GridMovement
 
     private Vector3Int arrayOffset;
 
-    private Cell startCell;
-    private Cell nextCell;
-
     private void Start()
     {
         CreateArrayOffset();
@@ -20,9 +17,9 @@ public class EnemyMovement : GridMovement
         arrayOffset = tilemap.cellBounds.size / 2;
     }
 
-    private void InitializeFirstCell()
+    private Cell InitializeFirstCell()
     {
-        startCell = new Cell(position, 0, CalculateDistance(position, player.position));
+        return new Cell(position, 0, CalculateDistance(position, player.position));
     }
 
     private void OnEnable() => player.onMove.AddListener(FindLowestScore);
@@ -33,39 +30,50 @@ public class EnemyMovement : GridMovement
     {
         Cell[,] openCells = new Cell[tilemap.cellBounds.size.x, tilemap.cellBounds.size.y];
         Cell[,] closedCells = new Cell[tilemap.cellBounds.size.x, tilemap.cellBounds.size.y];
-            
-        int lowestDistanceScore = CalculateDistance(position, player.position);
+
+        Cell nextCell;
         
-        InitializeFirstCell();
+        Cell startCell = InitializeFirstCell();
+        Cell cellToExplore = startCell;
         
-        while (startCell.position != player.position)
+        while (cellToExplore.position != player.position)
         {
-            (int lowestNeighbourScore, Cell neighbourCell) = AddNeighboursToOpenList(openCells, startCell, lowestDistanceScore);
-            
-            if (neighbourCell is not null && lowestNeighbourScore < lowestDistanceScore)
-            {
-                lowestDistanceScore = lowestNeighbourScore;
-            
-                startCell = neighbourCell;
-                closedCells[arrayOffset.x + startCell.position.x, arrayOffset.y + startCell.position.y] = startCell;
-            }
-            else
+            // Initially sets the lowest distance score to the highest possible so it will search all options.
+            int lowestDistanceScore = (openCells.GetLength(0) + openCells.GetLength(1)) * 10;
+            Cell neighbourCell = AddNeighboursToOpenList(openCells, cellToExplore, lowestDistanceScore);
+
+            if (neighbourCell is null)
             {
                 foreach (Cell openCell in openCells)
                 {
+                    lowestDistanceScore = CalculateDistance(position, player.position);
+                    
                     if (openCell is null)
                         continue;
                 
                     if (openCell.distanceScore < lowestDistanceScore)
-                        lowestDistanceScore = openCell.distanceScore;
+                    {
+                        cellToExplore = openCell;
+                    }
                 }
             }
+            else
+            {
+                cellToExplore = neighbourCell;
+            }
+
+            int x = arrayOffset.x + cellToExplore.position.x;
+            int y = arrayOffset.y + cellToExplore.position.y;
+
+            openCells[x, y] = null;
+            
+            closedCells[x, y] = cellToExplore;
         }
         
         Move(position - startCell.position);
     }
     
-    private (int, Cell) AddNeighboursToOpenList(Cell[,] cells, Cell cell, int distanceScore)
+    private Cell AddNeighboursToOpenList(Cell[,] cells, Cell cell, int distanceScore)
     {
         Cell[] neighbours = new Cell[4];
         
@@ -77,9 +85,8 @@ public class EnemyMovement : GridMovement
         return GetLowestScore(neighbours, distanceScore);
     }
     
-    private (int, Cell) GetLowestScore(Cell[] cells, int distanceScore)
+    private Cell GetLowestScore(Cell[] cells, int distanceScore)
     {
-        int lowestNeighbourScore = CalculateDistance(new Vector3Int(), new Vector3Int(tilemap.cellBounds.max.x, tilemap.cellBounds.max.y, 0));
         Cell checkedCell = null;
         
         foreach (Cell cell in cells)
@@ -87,11 +94,10 @@ public class EnemyMovement : GridMovement
             if (cell is null || cell.distanceScore >= distanceScore)
                 continue;
             
-            lowestNeighbourScore = cell.distanceScore;
             checkedCell = cell;
         }
         
-        return (lowestNeighbourScore, checkedCell);
+        return checkedCell;
     }
 
     private Cell CreateOpenCell(Cell[,] cells, Cell cell, Vector3Int direction)
