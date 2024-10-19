@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5287587890978492592}
   - component: {fileID: 2006972605381102810}
   - component: {fileID: 7403432197663452863}
+  - component: {fileID: 8004175378257352428}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -126,6 +127,25 @@ MonoBehaviour:
   rotationInterpolationDuration: 0.25
   positionOffset: {x: 0.5, y: 0, z: 0.5}
   position: {x: 0, y: 0, z: 0}
+  failedToMoveOntoCell: {x: -10000, y: 0, z: 0}
+  onMove:
+    m_PersistentCalls:
+      m_Calls: []
+  Keys: 0
+--- !u!114 &8004175378257352428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5475546015430137429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 358a1fabb849aeca1b9b15cdacae7fb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ratProjectile: {fileID: 0}
+  HandAnimator: {fileID: 0}
 --- !u!1 &6860512087859258212
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,7 +221,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 2734186bb2f26384e9937f129e1d95a6, type: 2}
+  m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
