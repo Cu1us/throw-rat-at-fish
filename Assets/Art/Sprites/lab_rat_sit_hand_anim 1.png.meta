@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ad7b8205f4afbcd4a8e6f340cfdeda97
+guid: 4721b2cfac3c0f64eab7633bc74f6578
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -21,7 +21,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 1
+  isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NEW_lab_rat_sit_hand_anim 1_0
+      name: lab_rat_sit_hand_anim 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2bb17b60bbfc1bf408e96577ac7d7419
-      internalID: -63185005
+      spriteID: d11925d1f7f7cdb428f513e913d8cc67
+      internalID: -627748115
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NEW_lab_rat_sit_hand_anim 1_1
+      name: lab_rat_sit_hand_anim 1_1
       rect:
         serializedVersion: 2
         x: 128
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cebc25f3bae7eb44fba0849d2b88104e
-      internalID: 780725494
+      spriteID: 3466790ba6d5dfd4896e46a6e7f028d5
+      internalID: 437702787
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NEW_lab_rat_sit_hand_anim 1_2
+      name: lab_rat_sit_hand_anim 1_2
       rect:
         serializedVersion: 2
         x: 256
@@ -153,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 326547c6e9486bf44958b49e4a66a0b2
-      internalID: -932733447
+      spriteID: 17df23f25a0ac434dab3735a4f5a100e
+      internalID: 1888709989
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NEW_lab_rat_sit_hand_anim 1_3
+      name: lab_rat_sit_hand_anim 1_3
       rect:
         serializedVersion: 2
         x: 384
@@ -174,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75f548bb8ce317e49a4125bf5514f04d
-      internalID: 1871926083
+      spriteID: 5e87663d89795f9428ac26bff8969f6c
+      internalID: -506378700
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NEW_lab_rat_sit_hand_anim 1_4
+      name: lab_rat_sit_hand_anim 1_4
       rect:
         serializedVersion: 2
         x: 512
@@ -195,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51e0a4f31008efa428adc996c9360208
-      internalID: -723328202
+      spriteID: 9e933dcf858cd6e44bf1c8b48018ec0f
+      internalID: -2095690383
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NEW_lab_rat_sit_hand_anim 1_5
+      name: lab_rat_sit_hand_anim 1_5
       rect:
         serializedVersion: 2
         x: 640
@@ -216,14 +216,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0431073fec083d4aa3a193fb356d3cd
-      internalID: -1249867012
+      spriteID: f1b11270f980bdb4684cc96b527c4ac1
+      internalID: -2113316361
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NEW_lab_rat_sit_hand_anim 1_6
+      name: lab_rat_sit_hand_anim 1_6
       rect:
         serializedVersion: 2
         x: 768
@@ -237,14 +237,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f1a1abd20d818ee4e91e3f9e7c4feb50
-      internalID: 1982700514
+      spriteID: 9a6638f50da96e549ad65752d4c0da06
+      internalID: 1444654149
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NEW_lab_rat_sit_hand_anim 1_7
+      name: lab_rat_sit_hand_anim 1_7
       rect:
         serializedVersion: 2
         x: 896
@@ -258,14 +258,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d700c090f1632540865a0ef37e15a2c
-      internalID: -762654823
+      spriteID: 7095d384b86623b499a7c69eac7430c4
+      internalID: 1639761087
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NEW_lab_rat_sit_hand_anim 1_8
+      name: lab_rat_sit_hand_anim 1_8
       rect:
         serializedVersion: 2
         x: 1024
@@ -279,14 +279,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94b61e0f88d6a884da5adbb5eaf9a782
-      internalID: 1163008394
+      spriteID: f9271f9e24b252244b02d823e4616745
+      internalID: 278391643
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NEW_lab_rat_sit_hand_anim 1_9
+      name: lab_rat_sit_hand_anim 1_9
       rect:
         serializedVersion: 2
         x: 1152
@@ -300,14 +300,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5eb83ed5f18027640adbe0ede244e246
-      internalID: 827946720
+      spriteID: c63d0dc5544497343a4c495a05b109f6
+      internalID: -845196706
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NEW_lab_rat_sit_hand_anim 1_10
+      name: lab_rat_sit_hand_anim 1_10
       rect:
         serializedVersion: 2
         x: 1280
@@ -321,14 +321,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26fd390931899a54d93359baacdc543e
-      internalID: -145916958
+      spriteID: fe97909505b92f849941f20bde46e211
+      internalID: 2027527195
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NEW_lab_rat_sit_hand_anim 1_11
+      name: lab_rat_sit_hand_anim 1_11
       rect:
         serializedVersion: 2
         x: 1408
@@ -342,14 +342,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce6b198512528684d8b149363e9e2168
-      internalID: 1675465287
+      spriteID: 3545162cf5b112f4785750cccbd43fda
+      internalID: 1372434495
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NEW_lab_rat_sit_hand_anim 1_12
+      name: lab_rat_sit_hand_anim 1_12
       rect:
         serializedVersion: 2
         x: 1536
@@ -363,14 +363,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5bd969d7f669f104abb0d37744651c17
-      internalID: 193005704
+      spriteID: a88d8d9f09511ce4c95498de2d70ad4e
+      internalID: -944081236
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NEW_lab_rat_sit_hand_anim 1_13
+      name: lab_rat_sit_hand_anim 1_13
       rect:
         serializedVersion: 2
         x: 1664
@@ -384,14 +384,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 43150dfad427a8a469ab3d1034ec4f9f
-      internalID: 848196132
+      spriteID: d472e1856c9581e4ca85e604a308136f
+      internalID: 643362617
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NEW_lab_rat_sit_hand_anim 1_14
+      name: lab_rat_sit_hand_anim 1_14
       rect:
         serializedVersion: 2
         x: 1792
@@ -405,14 +405,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c4c4633e1732054a97f552a54284487
-      internalID: -641237667
+      spriteID: 36caa55652101b24ba0c6a95ee83e01f
+      internalID: -1084265677
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NEW_lab_rat_sit_hand_anim 1_15
+      name: lab_rat_sit_hand_anim 1_15
       rect:
         serializedVersion: 2
         x: 1920
@@ -426,14 +426,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a98a5b3a6009c04697b22d92aee1477
-      internalID: 640954598
+      spriteID: 56cd9caf8794d3e41b8a87e9e9f7eb50
+      internalID: -1203356102
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NEW_lab_rat_sit_hand_anim 1_16
+      name: lab_rat_sit_hand_anim 1_16
       rect:
         serializedVersion: 2
         x: 2048
@@ -447,14 +447,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2efe46b83997b4f45bc0ec593efebe7f
-      internalID: -1154225277
+      spriteID: 892220956871e424d9b3c7e1f13055d8
+      internalID: -463290912
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NEW_lab_rat_sit_hand_anim 1_17
+      name: lab_rat_sit_hand_anim 1_17
       rect:
         serializedVersion: 2
         x: 2176
@@ -468,14 +468,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dfebe0bb0823298408201aef3d42d4bc
-      internalID: 1870039314
+      spriteID: afe8d594a1f01324db5f26f3b416d7f5
+      internalID: -1359119238
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NEW_lab_rat_sit_hand_anim 1_18
+      name: lab_rat_sit_hand_anim 1_18
       rect:
         serializedVersion: 2
         x: 2304
@@ -489,14 +489,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8afaad526e3b73a4584861045b3bf533
-      internalID: 1805208770
+      spriteID: 66c3dd7b219c76b4ba73c99dd23464b7
+      internalID: -699630890
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NEW_lab_rat_sit_hand_anim 1_19
+      name: lab_rat_sit_hand_anim 1_19
       rect:
         serializedVersion: 2
         x: 2432
@@ -510,8 +510,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6151de13f54b994db5a7013f235fc67
-      internalID: 1196775474
+      spriteID: fe83b1213a0f22e4b8cb4c939a4e5e5c
+      internalID: 2102700326
       vertices: []
       indices: 
       edges: []
@@ -519,7 +519,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 3879500f579f0804697b486e26c8e003
+    spriteID: 71d8dea51cf3054419eeeb082a88e091
     internalID: 0
     vertices: []
     indices: 
@@ -527,26 +527,26 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      NEW_lab_rat_sit_hand_anim 1_0: -63185005
-      NEW_lab_rat_sit_hand_anim 1_1: 780725494
-      NEW_lab_rat_sit_hand_anim 1_10: -145916958
-      NEW_lab_rat_sit_hand_anim 1_11: 1675465287
-      NEW_lab_rat_sit_hand_anim 1_12: 193005704
-      NEW_lab_rat_sit_hand_anim 1_13: 848196132
-      NEW_lab_rat_sit_hand_anim 1_14: -641237667
-      NEW_lab_rat_sit_hand_anim 1_15: 640954598
-      NEW_lab_rat_sit_hand_anim 1_16: -1154225277
-      NEW_lab_rat_sit_hand_anim 1_17: 1870039314
-      NEW_lab_rat_sit_hand_anim 1_18: 1805208770
-      NEW_lab_rat_sit_hand_anim 1_19: 1196775474
-      NEW_lab_rat_sit_hand_anim 1_2: -932733447
-      NEW_lab_rat_sit_hand_anim 1_3: 1871926083
-      NEW_lab_rat_sit_hand_anim 1_4: -723328202
-      NEW_lab_rat_sit_hand_anim 1_5: -1249867012
-      NEW_lab_rat_sit_hand_anim 1_6: 1982700514
-      NEW_lab_rat_sit_hand_anim 1_7: -762654823
-      NEW_lab_rat_sit_hand_anim 1_8: 1163008394
-      NEW_lab_rat_sit_hand_anim 1_9: 827946720
+      lab_rat_sit_hand_anim 1_0: -627748115
+      lab_rat_sit_hand_anim 1_1: 437702787
+      lab_rat_sit_hand_anim 1_10: 2027527195
+      lab_rat_sit_hand_anim 1_11: 1372434495
+      lab_rat_sit_hand_anim 1_12: -944081236
+      lab_rat_sit_hand_anim 1_13: 643362617
+      lab_rat_sit_hand_anim 1_14: -1084265677
+      lab_rat_sit_hand_anim 1_15: -1203356102
+      lab_rat_sit_hand_anim 1_16: -463290912
+      lab_rat_sit_hand_anim 1_17: -1359119238
+      lab_rat_sit_hand_anim 1_18: -699630890
+      lab_rat_sit_hand_anim 1_19: 2102700326
+      lab_rat_sit_hand_anim 1_2: 1888709989
+      lab_rat_sit_hand_anim 1_3: -506378700
+      lab_rat_sit_hand_anim 1_4: -2095690383
+      lab_rat_sit_hand_anim 1_5: -2113316361
+      lab_rat_sit_hand_anim 1_6: 1444654149
+      lab_rat_sit_hand_anim 1_7: 1639761087
+      lab_rat_sit_hand_anim 1_8: 278391643
+      lab_rat_sit_hand_anim 1_9: -845196706
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
