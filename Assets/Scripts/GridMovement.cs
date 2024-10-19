@@ -15,6 +15,7 @@ public class GridMovement : MonoBehaviour
     [SerializeField] Vector3 positionOffset;
 
     public Vector3Int position;
+    public Vector3 WorldPosition { get { return tilemap.CellToWorld(position) - positionOffset; } }
     float positionInterpolationStart;
     float rotationInterpolationStart;
 
@@ -24,7 +25,7 @@ public class GridMovement : MonoBehaviour
     Quaternion rotInterpolationTargetValue;
     protected bool moving = false;
     protected bool rotating = false;
-    protected Direction facingDirection;
+    public Direction facingDirection { get; protected set; }
 
     public UnityEvent onMove;
 
@@ -35,6 +36,10 @@ public class GridMovement : MonoBehaviour
         East,
         South,
         West
+    }
+    void Start()
+    {
+        SetPosition(position);
     }
     public static Vector3Int DirectionToMovement(Direction direction)
     {
@@ -83,6 +88,18 @@ public class GridMovement : MonoBehaviour
         InterpolateRotation();
     }
 
+    public void SetPosition(Vector3Int newPos)
+    {
+        position = newPos;
+        transform.position = tilemap.CellToWorld(position) + positionOffset;
+        moving = false;
+    }
+    public void SetRotation(Direction newDir)
+    {
+        facingDirection = newDir;
+        transform.rotation = DirectionToQuaternion(newDir);
+        rotating = false;
+    }
     public void Move(Vector3Int translation)
     {
         if (translation == Vector3Int.zero || moving) return;
