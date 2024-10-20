@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class PlayerMovement : GridMovement
 {
     public byte Keys = 0;
+    public float MaxHealth;
+    public float Health;
+    [SerializeField] float HealthRegenRate;
+    [SerializeField] Volume RedVignette;
     [SerializeField] Image KeycardHandUI;
     protected override void Update()
     {
@@ -20,7 +25,10 @@ public class PlayerMovement : GridMovement
         if (rotationInput != 0)
             Rotate(clockwise: rotationInput == -1);
         KeycardHandUI.enabled = Keys > 0;
+
         base.Update();
+        Health = Mathf.Clamp(Health + HealthRegenRate * Time.deltaTime, 0, MaxHealth);
+        UpdateHealth();
     }
     protected override TryWalkOnTileResult TryWalkOnTile(Vector3Int position)
     {
@@ -32,8 +40,21 @@ public class PlayerMovement : GridMovement
         return base.TryWalkOnTile(position);
     }
 
+    void UpdateHealth()
+    {
+        RedVignette.weight = 1 - (Health / MaxHealth);
+    }
+
     public void AttackedByEnemy(EnemyMovement enemy)
     {
-
+        Health--;
+        if (Health <= 0)
+        {
+            Debug.Log("Player died!");
+        }
+        else
+        {
+            UpdateHealth();
+        }
     }
 }
