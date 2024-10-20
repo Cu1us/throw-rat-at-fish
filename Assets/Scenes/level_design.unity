@@ -2794,6 +2794,7 @@ MonoBehaviour:
   player: {fileID: 1993014025}
   RatAudioSource: {fileID: 1887785705}
   RatPickedUp: 0
+  GameEnded: 0
 --- !u!1001 &796935293
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6509,11 +6510,11 @@ Tilemap:
   - first: {x: -9, y: 16, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 3
+      m_TileIndex: 1
       m_TileSpriteIndex: 4294967295
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 5
+      m_TileObjectToInstantiateIndex: 3
       dummyAlignment: 0
       m_AllTileFlags: 0
   - first: {x: -8, y: 16, z: 0}
@@ -7890,11 +7891,11 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 20
     m_Data: {fileID: 11400000, guid: 945a43e04453f8040955c424577d950d, type: 2}
-  - m_RefCount: 92
+  - m_RefCount: 93
     m_Data: {fileID: 11400000, guid: b01668f340ab776b9beaaac17346ceac, type: 2}
   - m_RefCount: 5
     m_Data: {fileID: 11400000, guid: 68e81f749dbcdbd3f82068013c4ab04e, type: 2}
-  - m_RefCount: 5
+  - m_RefCount: 4
     m_Data: {fileID: 11400000, guid: 00e2cac692085282abf3b1e03337df2e, type: 2}
   - m_RefCount: 111
     m_Data: {fileID: 11400000, guid: 7014b55c374d5cebbb06b0309dbe08ea, type: 2}
@@ -7937,13 +7938,13 @@ Tilemap:
   - m_RefCount: 20
     m_Data: {fileID: 5178827395106043021, guid: 8e7c8468115272944b118eef8932822d,
       type: 3}
-  - m_RefCount: 92
+  - m_RefCount: 93
     m_Data: {fileID: 8927962212010928859, guid: 5dc94d0a00a458848a52418dc5da27fe,
       type: 3}
   - m_RefCount: 25
     m_Data: {fileID: 8927962212010928859, guid: f272037f811f0ae41bfc444678a68691,
       type: 3}
-  - m_RefCount: 5
+  - m_RefCount: 4
     m_Data: {fileID: 5178827395106043021, guid: fcfa4f1572f2615838e06ec0d1789699,
       type: 3}
   - m_RefCount: 1
