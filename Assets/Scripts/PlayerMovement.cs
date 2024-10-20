@@ -13,6 +13,7 @@ public class PlayerMovement : GridMovement
     [SerializeField] float HealthRegenRate;
     [SerializeField] Volume RedVignette;
     [SerializeField] Image KeycardHandUI;
+    [SerializeField] Vector3Int gameEndPosition;
 
     private GameManager gameManager;
 
@@ -20,9 +21,15 @@ public class PlayerMovement : GridMovement
     {
         gameManager = FindObjectOfType<GameManager>();
     }
-    
+
     protected override void Update()
     {
+        if (position == gameEndPosition)
+        {
+            gameManager.GameEnd();
+            enabled = false;
+            return;
+        }
         int movementInput = Mathf.RoundToInt(Input.GetAxisRaw("Vertical"));
         int rotationInput = Mathf.RoundToInt(Input.GetAxisRaw("Horizontal"));
 

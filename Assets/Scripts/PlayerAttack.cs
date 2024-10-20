@@ -87,4 +87,8 @@ public class PlayerAttack : MonoBehaviour
         audioSource.clip = IntroMonologue;
         audioSource.Play();
     }
+    public void OnGameEnd()
+    {
+        HandAnimator.Play("Hidden");
+    }
 }

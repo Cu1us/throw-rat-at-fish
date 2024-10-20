@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerMovement player;
     [SerializeField] AudioSource RatAudioSource;
     public bool RatPickedUp = false;
+    public bool GameEnded = false;
 
     private void Start()
     {
@@ -59,5 +60,12 @@ public class GameManager : MonoBehaviour
     public void OnClickMenu()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void GameEnd()
+    {
+        RatPickedUp = false;
+        GameEnded = true;
+        FindObjectOfType<PlayerAttack>()?.OnGameEnd();
     }
 }
