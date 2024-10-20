@@ -13,6 +13,14 @@ public class PlayerMovement : GridMovement
     [SerializeField] float HealthRegenRate;
     [SerializeField] Volume RedVignette;
     [SerializeField] Image KeycardHandUI;
+
+    private GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
+    
     protected override void Update()
     {
         int movementInput = Mathf.RoundToInt(Input.GetAxisRaw("Vertical"));
@@ -63,6 +71,7 @@ public class PlayerMovement : GridMovement
         if (Health <= 0)
         {
             Debug.Log("Player died!");
+            gameManager.GameOver();
         }
         else
         {
