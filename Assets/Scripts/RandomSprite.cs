@@ -2,12 +2,19 @@ using UnityEngine;
 
 public class RandomSprite : MonoBehaviour
 {
-    [SerializeField] private Sprite[] sprites;
-    private SpriteRenderer spriteRenderer;
+    [SerializeField] private Animation[] animations;
 
     private void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = sprites[Random.Range(0, sprites.Length)];
+        Animator animator = GetComponent<Animator>();
+        Animation fishAnimation = animations[Random.Range(0, animations.Length)];
+        animator.Play(fishAnimation.ToString());
+    }
+
+    private enum Animation
+    {
+        Big,
+        Medium,
+        Small
     }
 }
