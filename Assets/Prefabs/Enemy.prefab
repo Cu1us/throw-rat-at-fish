@@ -238,6 +238,9 @@ MonoBehaviour:
   player: {fileID: 0}
   maxDirectDistanceBeforeMove: 100
   maxDistanceScore: 300
+  deathParticlePrefab: {fileID: 7801548358542984494, guid: df9e7334a8733962e8b7858fa7a7e9ee,
+    type: 3}
+  hasBeenHit: 0
 --- !u!82 &8370402771831231583
 AudioSource:
   m_ObjectHideFlags: 0

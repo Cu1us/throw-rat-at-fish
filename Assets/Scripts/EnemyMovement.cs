@@ -9,6 +9,7 @@ public class EnemyMovement : GridMovement
 
     [SerializeField] private int maxDirectDistanceBeforeMove = 100;
     [SerializeField] private int maxDistanceScore = 300;
+    [SerializeField] GameObject deathParticlePrefab;
 
     private GameManager gameManager;
 
@@ -35,7 +36,12 @@ public class EnemyMovement : GridMovement
         hasBeenHit = true;
         transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.grey;
         FindFirstObjectByType<GameManager>().enemies.Remove(this);
+        Invoke(nameof(DeathParticles), 0.5f);
         Destroy(gameObject, 0.5f);
+    }
+    void DeathParticles()
+    {
+        Instantiate(deathParticlePrefab, transform.position, Quaternion.identity);
     }
     private void FindLowestScore()
     {
@@ -97,13 +103,13 @@ public class EnemyMovement : GridMovement
             return;
 
         Cell nextCell = options.Aggregate((cellWithLowestTarget, cell) => cell.distanceFromTarget <= cellWithLowestTarget.distanceFromTarget ? cell : cellWithLowestTarget);
-        
+
         if (nextCell.distanceFromTarget <= 10)
             player.AttackedByEnemy(this);
 
         if (gameManager.enemies.Any(enemy => enemy.position == nextCell.position))
             return;
-        
+
         if (nextCell.distanceFromTarget < 10)
             return;
 
