@@ -132,9 +132,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Keys: 0
-  MaxHealth: 0
-  Health: 0
-  HealthRegenRate: 0
+  MaxHealth: 1.1
+  Health: 1.1
+  HealthRegenRate: 0.1
   RedVignette: {fileID: 0}
   KeycardHandUI: {fileID: 0}
 --- !u!114 &8004175378257352428
