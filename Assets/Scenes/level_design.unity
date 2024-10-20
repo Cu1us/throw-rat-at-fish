@@ -2774,8 +2774,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies: []
-  pauseMenu: {fileID: 0}
-  player: {fileID: 0}
+  pauseMenu: {fileID: 1855108368}
+  player: {fileID: 1993014025}
 --- !u!1001 &796935293
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8259,6 +8259,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6483015346538797413, guid: 4df2bbe170f2a914e990ba820e2e4b1e,
     type: 3}
   m_PrefabInstance: {fileID: 484531147}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1855108368 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4563853785969470285, guid: a6c72ea70f1459c4590c39597d236160,
+    type: 3}
+  m_PrefabInstance: {fileID: 230533241713086631}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1871173079
 PrefabInstance:
