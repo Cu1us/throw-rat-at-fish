@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +9,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject gameOver;
+    [SerializeField] GameObject AttackRato;
+    [SerializeField] Image BlackImage;
+
+    [SerializeField] Image FinalImage;
+
     private bool isPaused;
 
     [SerializeField] private PlayerMovement player;
@@ -67,5 +73,19 @@ public class GameManager : MonoBehaviour
         RatPickedUp = false;
         GameEnded = true;
         FindObjectOfType<PlayerAttack>()?.OnGameEnd();
+        AttackRato.SetActive(true);
+        Invoke(nameof(ActivateBlackImage), 1.35f);
+    }
+    public void ActivateBlackImage()
+    {
+        Invoke(nameof(ActivateFinalImage), 1.35f);
+        BlackImage.enabled = true;
+
+    }
+    public void ActivateFinalImage()
+    {
+        BlackImage.enabled = false;
+        FinalImage.enabled = true;
+        GetComponent<AudioSource>().Play();
     }
 }
