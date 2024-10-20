@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="637abd54-c878-424c-8f67-4b81a91e2988" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.throw-rat-at-fish/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.throw-rat-at-fish/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Tilesets/LabTileset.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Tilesets/LabTileset.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/shader/GameScreen.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/shader/GameScreen.renderTexture" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level 1.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GridMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GridMovement.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,10 +75,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="1600">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="1600" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -95,7 +96,10 @@
       <updated>1729271937962</updated>
       <workItem from="1729271940748" duration="4030000" />
       <workItem from="1729319066307" duration="22991000" />
-      <workItem from="1729350517326" duration="13152000" />
+      <workItem from="1729350517326" duration="13925000" />
+      <workItem from="1729405548697" duration="30000" />
+      <workItem from="1729405595963" duration="133000" />
+      <workItem from="1729405744011" duration="1792000" />
     </task>
     <servers />
   </component>
@@ -111,24 +115,5 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/EnemyMovement.cs</url>
-          <line>89</line>
-          <properties documentPath="C:\Users\jasmi\Documents\UnityProjects\throw-rat-at-fish\Assets\Scripts\EnemyMovement.cs" containingFunctionPresentation="Method 'FindLowestScore'">
-            <startOffsets>
-              <option value="2909" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2925" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="56" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

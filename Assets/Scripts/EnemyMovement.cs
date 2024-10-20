@@ -1,6 +1,5 @@
 using UnityEngine;
 using System;
-using Vector3Int = UnityEngine.Vector3Int;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -65,8 +64,7 @@ public class EnemyMovement : GridMovement
             
             closedCells[x, y] = cellToExplore;
         }
-
-        Vector3Int direction = new();
+        
         List<Cell> options = new();
         
         foreach (Cell closedCell in closedCells)
@@ -76,23 +74,24 @@ public class EnemyMovement : GridMovement
             
             Vector3Int middlePoint = startCell.position - closedCell.position;
             
-            if (middlePoint is not { x: <= 1 and >= -1, y: <= 1 and >= -1 }) 
-                continue;
-            
-            options.Add(closedCell);
+            if (middlePoint is { x: <= 1 and >= -1, y: 0 } or { x: 0, y: <= 1 and >= -1 }) 
+                options.Add(closedCell);
         }
         
         Cell nextCell = options.Aggregate((cellWithLowestTarget, cell) => cell.distanceFromTarget <= cellWithLowestTarget.distanceFromTarget ? cell : cellWithLowestTarget);
         
-        direction = nextCell.position - startCell.position;
-        Debug.Log(direction);
-        
+        Vector3Int direction = nextCell.position - startCell.position;
         Move(direction);
     }
     
     private Cell InitializeFirstCell()
     {
         return new Cell(new Vector3Int(position.x, position.y, 0), 0, CalculateDistance(position, player.position));
+    }
+    
+    private int CalculateDistance(Vector3Int start, Vector3Int target)
+    {
+        return (Math.Abs(start.x - target.x) + Math.Abs(start.y - target.y)) * 10;
     }
     
     private Cell AddNeighboursToOpenList(Cell[,] cells, Cell cell, int distanceScore)
@@ -146,11 +145,6 @@ public class EnemyMovement : GridMovement
         cells[arrayOffset.x + cell.position.x + direction.x, arrayOffset.y + cell.position.z + direction.y] = newCell;
 
         return newCell;
-    }
-    
-    private int CalculateDistance(Vector3Int start, Vector3Int target)
-    {
-        return (Math.Abs(start.x - target.x) + Math.Abs(start.y - target.y)) * 10;
     }
 }
 
