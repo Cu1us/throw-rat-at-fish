@@ -32,6 +32,7 @@ public class RatProjectile : MonoBehaviour
     }
     void Update()
     {
+        audioSource.transform.position = transform.position;
         if (ratState == RatState.FLYING)
         {
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, Time.deltaTime * speed))
@@ -74,7 +75,7 @@ public class RatProjectile : MonoBehaviour
         ratState = RatState.RUNNING;
         transform.position -= new Vector3(0, 0.25f, 0);
         animator.Play("Running");
-        audioSource.PlayOneShot(RunBackSounds[UnityEngine.Random.Range(0, RunBackSounds.Length)]);
+        audioSource.PlayOneShot(RunBackSounds[UnityEngine.Random.Range(0, RunBackSounds.Length)], 0.33f);
     }
     public void Throw()
     {
