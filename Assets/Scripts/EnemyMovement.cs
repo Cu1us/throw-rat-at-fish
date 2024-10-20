@@ -41,7 +41,7 @@ public class EnemyMovement : GridMovement
     }
     void DeathParticles()
     {
-        Instantiate(deathParticlePrefab, transform.position, Quaternion.identity);
+        Destroy(Instantiate(deathParticlePrefab, transform.position, Quaternion.identity), 1);
     }
     private void FindLowestScore()
     {
