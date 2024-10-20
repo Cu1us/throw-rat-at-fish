@@ -138,6 +138,7 @@ MonoBehaviour:
   HealthRegenRate: 0.1
   RedVignette: {fileID: 0}
   KeycardHandUI: {fileID: 0}
+  gameEndPosition: {x: -13, y: 25, z: 0}
 --- !u!114 &8004175378257352428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +164,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 78991c6a0539c6d4497b6fb1adc4d761, type: 3}
   - {fileID: 8300000, guid: d86b33b7c8e8431488740025eb6df3fd, type: 3}
   - {fileID: 8300000, guid: ea733c48e5699644996322447ef762c0, type: 3}
+  IntroMonologue: {fileID: 0}
   randomChatterMinCooldown: 5
   randomChatterMaxCooldown: 10
 --- !u!82 &6707329178747618008
