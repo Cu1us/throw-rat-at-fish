@@ -1,11 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [HideInInspector] public List<EnemyMovement> enemies = new();
 
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject gameOver;
     private bool isPaused;
 
     [SerializeField] private PlayerMovement player;
@@ -15,6 +17,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         pauseMenu.SetActive(false);
+        gameOver.SetActive(false);
     }
 
     private void Update()
@@ -45,5 +48,16 @@ public class GameManager : MonoBehaviour
     {
         RatPickedUp = true;
         FindObjectOfType<PlayerAttack>()?.PlayIntroMonologue();
+    }
+
+    public void GameOver()
+    {
+        gameOver.SetActive(true);
+        player.enabled = false;
+    }
+
+    public void OnClickMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

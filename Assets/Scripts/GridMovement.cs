@@ -118,7 +118,6 @@ public class GridMovement : MonoBehaviour
 
         if (nextPosition == failedToMoveOntoCell) return;
         TryWalkOnTileResult canWalk = TryWalkOnTile(nextPosition);
-        Debug.Log(gameObject.name + ": " + canWalk.ToString());
         if (canWalk != TryWalkOnTileResult.PassThrough)
         {
             if (canWalk == TryWalkOnTileResult.StopButCanPassNextTime)
