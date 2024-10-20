@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="637abd54-c878-424c-8f67-4b81a91e2988" name="Changes" comment="" />
+    <list default="true" id="637abd54-c878-424c-8f67-4b81a91e2988" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.throw-rat-at-fish/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.throw-rat-at-fish/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Enemy.prefab" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,6 +47,14 @@
   }
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../../Rattitude/Rattitude - Windows\Throw Rats At Fish.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\jasmi\Documents\Rattitude\Rattitude - Windows" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.47f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath C:\Users\jasmi\Documents\UnityProjects\throw-rat-at-fish -debugCodeOptimization" />
@@ -96,6 +107,7 @@
       <workItem from="1729405595963" duration="133000" />
       <workItem from="1729405744011" duration="1792000" />
       <workItem from="1729413418974" duration="4665000" />
+      <workItem from="1729422924839" duration="26000" />
     </task>
     <servers />
   </component>
