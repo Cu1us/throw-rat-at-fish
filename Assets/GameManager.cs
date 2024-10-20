@@ -74,11 +74,11 @@ public class GameManager : MonoBehaviour
         GameEnded = true;
         FindObjectOfType<PlayerAttack>()?.OnGameEnd();
         AttackRato.SetActive(true);
-        Invoke(nameof(ActivateBlackImage), 1.35f);
+        Invoke(nameof(ActivateBlackImage), 1.7f);
     }
     public void ActivateBlackImage()
     {
-        Invoke(nameof(ActivateFinalImage), 1.35f);
+        Invoke(nameof(ActivateFinalImage), 3f);
         BlackImage.enabled = true;
 
     }
