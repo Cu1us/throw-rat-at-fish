@@ -4,12 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(AudioSource))]
 public class RatProjectile : MonoBehaviour
 {
     public PlayerMovement player;
     Animator animator;
-    AudioSource audioSource;
+    [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip hitWallSound;
     [SerializeField] AudioClip hitEnemySound;
     [SerializeField] AudioClip[] RunBackSounds;
@@ -30,7 +29,6 @@ public class RatProjectile : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
     }
     void Update()
     {
