@@ -10,6 +10,8 @@ public class EnemyMovement : GridMovement
     [SerializeField] private int maxDirectDistanceBeforeMove = 100;
     [SerializeField] private int maxDistanceScore = 300;
 
+    private GameManager gameManager;
+
     public bool hasBeenHit = false;
 
     private void Start()
@@ -19,8 +21,8 @@ public class EnemyMovement : GridMovement
 
     private void AppendToGameManager()
     {
-        GameManager manager = FindObjectOfType<GameManager>();
-        manager.enemies.Add(this);
+        gameManager = FindObjectOfType<GameManager>();
+        gameManager.enemies.Add(this);
     }
 
     private void OnEnable() => player.onMove.AddListener(FindLowestScore);
@@ -95,10 +97,13 @@ public class EnemyMovement : GridMovement
             return;
 
         Cell nextCell = options.Aggregate((cellWithLowestTarget, cell) => cell.distanceFromTarget <= cellWithLowestTarget.distanceFromTarget ? cell : cellWithLowestTarget);
-
+        
         if (nextCell.distanceFromTarget <= 10)
             player.AttackedByEnemy(this);
 
+        if (gameManager.enemies.Any(enemy => enemy.position == nextCell.position))
+            return;
+        
         if (nextCell.distanceFromTarget < 10)
             return;
 
