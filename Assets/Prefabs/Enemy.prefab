@@ -146,7 +146,7 @@ MonoBehaviour:
   movementInterpolationDuration: 0.2
   rotationInterpolationDuration: 0.2
   positionOffset: {x: 0.5, y: 0, z: 0.5}
-  position: {x: -5, y: 0, z: 10}
+  position: {x: 0, y: 0, z: 0}
   failedToMoveOntoCell: {x: -10000, y: 0, z: 0}
   onMove:
     m_PersistentCalls:

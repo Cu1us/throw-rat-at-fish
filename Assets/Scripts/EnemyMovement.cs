@@ -158,7 +158,7 @@ public class EnemyMovement : GridMovement
         if (tile is null)
             return null;
         
-        if (!tile.Walkable) 
+        if (!tile.Walkable || (tilemap.GetInstantiatedObject(futurePosition).TryGetComponent(out Door door) && !door.IsOpen)) 
             return null;
         
         int startToCell = CalculateDistance(position, futurePosition);

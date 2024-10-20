@@ -8,6 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.throw-rat-at-fish/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.throw-rat-at-fish/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Enemy.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/level_design.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/level_design.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Door.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Door.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyMovement.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -100,7 +101,7 @@
       <workItem from="1729405548697" duration="30000" />
       <workItem from="1729405595963" duration="133000" />
       <workItem from="1729405744011" duration="1792000" />
-      <workItem from="1729413418974" duration="1884000" />
+      <workItem from="1729413418974" duration="2774000" />
     </task>
     <servers />
   </component>
