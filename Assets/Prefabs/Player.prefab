@@ -132,6 +132,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Keys: 0
+  MaxHealth: 0
+  Health: 0
+  HealthRegenRate: 0
+  RedVignette: {fileID: 0}
   KeycardHandUI: {fileID: 0}
 --- !u!114 &8004175378257352428
 MonoBehaviour:
@@ -263,7 +267,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
