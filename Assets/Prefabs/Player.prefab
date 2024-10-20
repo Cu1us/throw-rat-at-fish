@@ -152,10 +152,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ratProjectile: {fileID: 0}
   HandAnimator: {fileID: 0}
-  ThrowClips:
-  - {fileID: 8300000, guid: 3532a3a3a82e1b143acabe376b77a5d8, type: 3}
-  - {fileID: 8300000, guid: f7906efb8b078624fbb92ed0969aa35c, type: 3}
-  - {fileID: 8300000, guid: 03e6156e1806d8e4892b5b7af866dcc5, type: 3}
   RandomChatterClips:
   - {fileID: 8300000, guid: dcfd80946c33fa94abe9749a67fb8d97, type: 3}
   - {fileID: 8300000, guid: b98831ee9b868ed4988a600fce804d73, type: 3}

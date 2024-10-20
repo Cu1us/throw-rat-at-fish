@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="637abd54-c878-424c-8f67-4b81a91e2988" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menus/Menu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menus/Menu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +108,7 @@
       <workItem from="1729413418974" duration="4665000" />
       <workItem from="1729422924839" duration="26000" />
       <workItem from="1729422966639" duration="1654000" />
-      <workItem from="1729426747770" duration="792000" />
+      <workItem from="1729426747770" duration="2774000" />
     </task>
     <servers />
   </component>
