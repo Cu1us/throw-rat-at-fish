@@ -40,13 +40,14 @@ public class RatProjectile : MonoBehaviour
                 if (hitInfo.collider.TryGetComponent(out EnemyMovement enemy))
                 {
                     audioSource.PlayOneShot(hitEnemySound);
+                    enemy.GetHit();
                 }
                 else
                 {
                     audioSource.PlayOneShot(hitWallSound);
                 }
                 transform.position = hitInfo.point + hitInfo.normal * 0.01f;
-                transform.parent = hitInfo.collider.transform;
+                //transform.parent = hitInfo.collider.transform;
                 ratState = RatState.SPLAT;
                 animator.Play("Splat");
                 Invoke(nameof(StartRunning), 0.5f);

@@ -10,6 +10,8 @@ public class EnemyMovement : GridMovement
     [SerializeField] private int maxDirectDistanceBeforeMove = 100;
     [SerializeField] private int maxDistanceScore = 300;
 
+    public bool hasBeenHit = false;
+
     private void Start()
     {
         AppendToGameManager();
@@ -24,22 +26,31 @@ public class EnemyMovement : GridMovement
     private void OnEnable() => player.onMove.AddListener(FindLowestScore);
 
     private void OnDisable() => player.onMove.RemoveListener(FindLowestScore);
-    
+
+    public void GetHit()
+    {
+        if (hasBeenHit) return;
+        hasBeenHit = true;
+        transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.grey;
+        FindFirstObjectByType<GameManager>().enemies.Remove(this);
+        Destroy(gameObject, 0.5f);
+    }
     private void FindLowestScore()
     {
+        if (hasBeenHit) return;
         int currentDistance = CalculateDistance(position, player.position);
 
         if (currentDistance > maxDirectDistanceBeforeMove)
             return;
-        
+
         List<Cell> openCells = new();
         List<Cell> closedCells = new();
-        
+
         Cell startCell = InitializeFirstCell();
         Cell cellToExplore = startCell;
 
         int ranTimes = 0;
-        
+
         while (cellToExplore.position != player.position && ranTimes < 1000)
         {
             ranTimes++;
@@ -51,9 +62,9 @@ public class EnemyMovement : GridMovement
             {
                 foreach (Cell openCell in openCells)
                 {
-                    if (openCell.distanceScore >= lowestDistanceScore) 
+                    if (openCell.distanceScore >= lowestDistanceScore)
                         continue;
-                    
+
                     lowestDistanceScore = openCell.distanceScore;
                     cellToExplore = openCell;
                 }
@@ -62,27 +73,27 @@ public class EnemyMovement : GridMovement
             {
                 cellToExplore = neighbourCell;
             }
-            
+
             closedCells.Add(cellToExplore);
             openCells.Remove(cellToExplore);
 
             if (openCells.Count == 0)
                 break;
         }
-        
+
         List<Cell> options = new();
-        
+
         foreach (Cell closedCell in closedCells)
         {
             Vector3Int middlePoint = startCell.position - closedCell.position;
-            
-            if (middlePoint is { x: <= 1 and >= -1, y: 0 } or { x: 0, y: <= 1 and >= -1 }) 
+
+            if (middlePoint is { x: <= 1 and >= -1, y: 0 } or { x: 0, y: <= 1 and >= -1 })
                 options.Add(closedCell);
         }
 
         if (options.Count == 0)
             return;
-        
+
         Cell nextCell = options.Aggregate((cellWithLowestTarget, cell) => cell.distanceFromTarget <= cellWithLowestTarget.distanceFromTarget ? cell : cellWithLowestTarget);
 
         if (nextCell.distanceFromTarget <= 10)
@@ -90,24 +101,24 @@ public class EnemyMovement : GridMovement
 
         if (nextCell.distanceFromTarget < 10)
             return;
-        
+
         if (nextCell.distanceFromTarget > maxDirectDistanceBeforeMove)
             return;
-        
+
         Vector3Int direction = nextCell.position - startCell.position;
         Move(direction);
     }
-    
+
     private Cell InitializeFirstCell()
     {
         return new Cell(new Vector3Int(position.x, position.y, 0), 0, CalculateDistance(position, player.position));
     }
-    
+
     private int CalculateDistance(Vector3Int start, Vector3Int target)
     {
         return (Math.Abs(start.x - target.x) + Math.Abs(start.y - target.y)) * 10;
     }
-    
+
     private Cell AddNeighboursToOpenList(List<Cell> cells, Cell cell, int distanceScore)
     {
         List<Cell> neighbours = new()
@@ -120,11 +131,11 @@ public class EnemyMovement : GridMovement
 
         return GetLowestScore(neighbours, distanceScore);
     }
-    
+
     private Cell GetLowestScore(List<Cell> cells, int distanceScore)
     {
         Cell checkedCell = null;
-        
+
         foreach (Cell cell in cells)
         {
             if (cell is null || cell.distanceScore >= distanceScore)
@@ -133,7 +144,7 @@ public class EnemyMovement : GridMovement
             distanceScore = cell.distanceScore;
             checkedCell = cell;
         }
-        
+
         return checkedCell;
     }
 
@@ -148,15 +159,15 @@ public class EnemyMovement : GridMovement
 
         if (tile is null)
             return null;
-        
-        if (!tile.Walkable || (tilemap.GetInstantiatedObject(futurePosition).TryGetComponent(out Door door) && !door.IsOpen)) 
+
+        if (!tile.Walkable || (tilemap.GetInstantiatedObject(futurePosition).TryGetComponent(out Door door) && !door.IsOpen))
             return null;
-        
+
         int startToCell = CalculateDistance(position, futurePosition);
         int targetToCell = CalculateDistance(futurePosition, player.position);
 
         Cell newCell = new(futurePosition, startToCell, targetToCell);
-        
+
         cells.Add(newCell);
 
         return newCell;
@@ -166,7 +177,7 @@ public class EnemyMovement : GridMovement
 public class Cell
 {
     public Vector3Int position;
-    
+
     private int distanceFromStart;
     public int distanceFromTarget;
 

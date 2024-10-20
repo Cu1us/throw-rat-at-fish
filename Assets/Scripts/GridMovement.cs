@@ -28,6 +28,7 @@ public class GridMovement : MonoBehaviour
     public Direction facingDirection { get; protected set; }
 
     public Vector3Int failedToMoveOntoCell = new(-10000, 0, 0);
+    protected bool moveCooldown = false;
     public UnityEvent onMove;
 
     #region Direction manipulation
@@ -117,9 +118,13 @@ public class GridMovement : MonoBehaviour
 
         if (nextPosition == failedToMoveOntoCell) return;
         TryWalkOnTileResult canWalk = TryWalkOnTile(nextPosition);
+        Debug.Log(gameObject.name + ": " + canWalk.ToString());
         if (canWalk != TryWalkOnTileResult.PassThrough)
         {
-            if (canWalk != TryWalkOnTileResult.StopButCanPassNextTime) failedToMoveOntoCell = nextPosition;
+            if (canWalk == TryWalkOnTileResult.StopButCanPassNextTime)
+                moveCooldown = true;
+            else
+                failedToMoveOntoCell = nextPosition;
             return;
         };
 
