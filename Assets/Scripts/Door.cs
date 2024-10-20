@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Door : InteractableTile
 {
-    bool IsOpen = false;
+    public bool IsOpen = false;
     [SerializeField] AudioClip OpenFailSound;
     [SerializeField] AudioClip OpenSuccessSound;
     [SerializeField] Material OpenedMaterial;

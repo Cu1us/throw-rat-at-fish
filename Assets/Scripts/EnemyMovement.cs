@@ -8,25 +8,18 @@ public class EnemyMovement : GridMovement
 {
     [SerializeField] private PlayerMovement player;
 
-    [FormerlySerializedAs("maxDirectDistanceToMove")] [SerializeField] private int maxDirectDistanceBeforeMove = 100;
-
-    private Vector3Int arrayOffset;
+    [SerializeField] private int maxDirectDistanceBeforeMove = 100;
+    [SerializeField] private int maxDistanceScore = 300;
 
     private void Start()
     {
         AppendToGameManager();
-        CreateArrayOffset();
     }
 
     private void AppendToGameManager()
     {
         GameManager manager = FindObjectOfType<GameManager>();
         manager.enemies.Add(this);
-    }
-    
-    private void CreateArrayOffset()
-    {
-        arrayOffset = tilemap.cellBounds.size / 2;
     }
 
     private void OnEnable() => player.onMove.AddListener(FindLowestScore);
@@ -40,8 +33,8 @@ public class EnemyMovement : GridMovement
         if (currentDistance > maxDirectDistanceBeforeMove)
             return;
         
-        Cell[,] openCells = new Cell[tilemap.cellBounds.size.x, tilemap.cellBounds.size.y];
-        Cell[,] closedCells = new Cell[tilemap.cellBounds.size.x, tilemap.cellBounds.size.y];
+        List<Cell> openCells = new();
+        List<Cell> closedCells = new();
         
         Cell startCell = InitializeFirstCell();
         Cell cellToExplore = startCell;
@@ -52,16 +45,13 @@ public class EnemyMovement : GridMovement
         {
             ranTimes++;
             // Initially sets the lowest distance score to the highest possible so it will search all options.
-            int lowestDistanceScore = (openCells.GetLength(0) + openCells.GetLength(1)) * 10;
+            int lowestDistanceScore = maxDistanceScore;
             Cell neighbourCell = AddNeighboursToOpenList(openCells, cellToExplore, lowestDistanceScore);
 
             if (neighbourCell is null)
             {
                 foreach (Cell openCell in openCells)
                 {
-                    if (openCell is null)
-                        continue;
-
                     if (openCell.distanceScore >= lowestDistanceScore) 
                         continue;
                     
@@ -73,20 +63,18 @@ public class EnemyMovement : GridMovement
             {
                 cellToExplore = neighbourCell;
             }
-
-            int x = arrayOffset.x + cellToExplore.position.x;
-            int y = arrayOffset.y + cellToExplore.position.y;
             
-            closedCells[x, y] = cellToExplore;
+            closedCells.Add(cellToExplore);
+            openCells.Remove(cellToExplore);
+
+            if (openCells.Count == 0)
+                break;
         }
         
         List<Cell> options = new();
         
         foreach (Cell closedCell in closedCells)
         {
-            if (closedCell is null)
-                continue;
-            
             Vector3Int middlePoint = startCell.position - closedCell.position;
             
             if (middlePoint is { x: <= 1 and >= -1, y: 0 } or { x: 0, y: <= 1 and >= -1 }) 
@@ -118,19 +106,20 @@ public class EnemyMovement : GridMovement
         return (Math.Abs(start.x - target.x) + Math.Abs(start.y - target.y)) * 10;
     }
     
-    private Cell AddNeighboursToOpenList(Cell[,] cells, Cell cell, int distanceScore)
+    private Cell AddNeighboursToOpenList(List<Cell> cells, Cell cell, int distanceScore)
     {
-        Cell[] neighbours = new Cell[4];
-        
-        neighbours[0] = CreateOpenCell(cells, cell, Vector3Int.up);
-        neighbours[1] = CreateOpenCell(cells, cell, Vector3Int.right);
-        neighbours[2] = CreateOpenCell(cells, cell, Vector3Int.down);
-        neighbours[3] = CreateOpenCell(cells, cell, Vector3Int.left);
-        
+        List<Cell> neighbours = new()
+        {
+            CreateOpenCell(cells, cell, Vector3Int.up),
+            CreateOpenCell(cells, cell, Vector3Int.right),
+            CreateOpenCell(cells, cell, Vector3Int.down),
+            CreateOpenCell(cells, cell, Vector3Int.left)
+        };
+
         return GetLowestScore(neighbours, distanceScore);
     }
     
-    private Cell GetLowestScore(Cell[] cells, int distanceScore)
+    private Cell GetLowestScore(List<Cell> cells, int distanceScore)
     {
         Cell checkedCell = null;
         
@@ -146,7 +135,7 @@ public class EnemyMovement : GridMovement
         return checkedCell;
     }
 
-    private Cell CreateOpenCell(Cell[,] cells, Cell cell, Vector3Int direction)
+    private Cell CreateOpenCell(List<Cell> cells, Cell cell, Vector3Int direction)
     {
         Vector3Int futurePosition = new(
             cell.position.x + direction.x,
@@ -158,7 +147,7 @@ public class EnemyMovement : GridMovement
         if (tile is null)
             return null;
         
-        if (!tile.Walkable) 
+        if (!tile.Walkable || (tilemap.GetInstantiatedObject(futurePosition).TryGetComponent(out Door door) && !door.IsOpen)) 
             return null;
         
         int startToCell = CalculateDistance(position, futurePosition);
@@ -166,7 +155,7 @@ public class EnemyMovement : GridMovement
 
         Cell newCell = new(futurePosition, startToCell, targetToCell);
         
-        cells[arrayOffset.x + cell.position.x + direction.x, arrayOffset.y + cell.position.z + direction.y] = newCell;
+        cells.Add(newCell);
 
         return newCell;
     }
