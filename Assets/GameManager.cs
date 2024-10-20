@@ -79,13 +79,13 @@ public class GameManager : MonoBehaviour
     public void ActivateBlackImage()
     {
         Invoke(nameof(ActivateFinalImage), 3f);
-        BlackImage.enabled = true;
+        BlackImage.gameObject.SetActive(true);
 
     }
     public void ActivateFinalImage()
     {
-        BlackImage.enabled = false;
-        FinalImage.enabled = true;
+        BlackImage.gameObject.SetActive(false);
+        FinalImage.gameObject.SetActive(true);
         GetComponent<AudioSource>().Play();
     }
 }
