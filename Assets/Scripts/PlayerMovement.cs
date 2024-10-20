@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
@@ -29,9 +30,14 @@ public class PlayerMovement : GridMovement
         base.Update();
         Health = Mathf.Clamp(Health + HealthRegenRate * Time.deltaTime, 0, MaxHealth);
         UpdateHealth();
+        if (movementInput == 0)
+        {
+            moveCooldown = false;
+        }
     }
     protected override TryWalkOnTileResult TryWalkOnTile(Vector3Int position)
     {
+        if (moveCooldown) return TryWalkOnTileResult.StopButCanPassNextTime;
         GameObject tileObject = tilemap.GetInstantiatedObject(position);
         if (tileObject.TryGetComponent(out InteractableTile interactableTile))
         {
