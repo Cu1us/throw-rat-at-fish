@@ -12,6 +12,8 @@ public class RatProjectile : MonoBehaviour
     AudioSource audioSource;
     [SerializeField] AudioClip hitWallSound;
     [SerializeField] AudioClip hitEnemySound;
+    [SerializeField] AudioClip[] RunBackSounds;
+
 
     public Action onReturnToPlayer;
     public float speed;
@@ -74,6 +76,7 @@ public class RatProjectile : MonoBehaviour
         ratState = RatState.RUNNING;
         transform.position -= new Vector3(0, 0.25f, 0);
         animator.Play("Running");
+        audioSource.PlayOneShot(RunBackSounds[UnityEngine.Random.Range(0, RunBackSounds.Length)]);
     }
     public void Throw()
     {

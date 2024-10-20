@@ -10,7 +10,6 @@ public class PlayerAttack : MonoBehaviour
 
     [SerializeField] RatProjectile ratProjectile;
     [SerializeField] Animator HandAnimator;
-    [SerializeField] AudioClip[] ThrowClips;
     [SerializeField] AudioClip[] RandomChatterClips;
     [SerializeField] float randomChatterMinCooldown;
     [SerializeField] float randomChatterMaxCooldown;
@@ -53,7 +52,6 @@ public class PlayerAttack : MonoBehaviour
         if (ratInHand)
         {
             audioSource.Stop();
-            audioSource.PlayOneShot(ThrowClips[Random.Range(0, ThrowClips.Length)]);
             ratProjectile.gameObject.SetActive(true);
             ratProjectile.transform.position = playerMovement.WorldPosition;
             ratProjectile.transform.rotation = GridMovement.DirectionToQuaternion(playerMovement.facingDirection);
