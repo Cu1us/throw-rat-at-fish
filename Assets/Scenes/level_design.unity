@@ -534,6 +534,10 @@ MonoBehaviour:
   player: {fileID: 1993014025}
   hitWallSound: {fileID: 8300000, guid: a1ae2de8679e8cfd3bcfc4f2be84ad1b, type: 3}
   hitEnemySound: {fileID: 8300000, guid: a1ae2de8679e8cfd3bcfc4f2be84ad1b, type: 3}
+  RunBackSounds:
+  - {fileID: 8300000, guid: 3532a3a3a82e1b143acabe376b77a5d8, type: 3}
+  - {fileID: 8300000, guid: f7906efb8b078624fbb92ed0969aa35c, type: 3}
+  - {fileID: 8300000, guid: 03e6156e1806d8e4892b5b7af866dcc5, type: 3}
   speed: 5
   runningSpeed: 3
 --- !u!95 &212766530
