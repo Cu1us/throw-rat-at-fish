@@ -31,4 +31,9 @@ public class PlayerMovement : GridMovement
         }
         return base.TryWalkOnTile(position);
     }
+
+    public void AttackedByEnemy(EnemyMovement enemy)
+    {
+
+    }
 }

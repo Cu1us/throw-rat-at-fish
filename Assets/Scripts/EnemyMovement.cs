@@ -14,7 +14,14 @@ public class EnemyMovement : GridMovement
 
     private void Start()
     {
+        AppendToGameManager();
         CreateArrayOffset();
+    }
+
+    private void AppendToGameManager()
+    {
+        GameManager manager = FindObjectOfType<GameManager>();
+        manager.enemies.Add(this);
     }
     
     private void CreateArrayOffset()
@@ -84,6 +91,12 @@ public class EnemyMovement : GridMovement
             
             if (middlePoint is { x: <= 1 and >= -1, y: 0 } or { x: 0, y: <= 1 and >= -1 }) 
                 options.Add(closedCell);
+        }
+
+        if (options.Count == 0)
+        {
+            player.AttackedByEnemy(this);
+            return;
         }
         
         Cell nextCell = options.Aggregate((cellWithLowestTarget, cell) => cell.distanceFromTarget <= cellWithLowestTarget.distanceFromTarget ? cell : cellWithLowestTarget);
