@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(AudioSource))]
 public class RatProjectile : MonoBehaviour
 {
     public PlayerMovement player;
     Animator animator;
+    AudioSource audioSource;
+    [SerializeField] AudioClip hitWallSound;
+    [SerializeField] AudioClip hitEnemySound;
+
     public Action onReturnToPlayer;
     public float speed;
     public float runningSpeed;
@@ -23,6 +28,7 @@ public class RatProjectile : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -32,7 +38,11 @@ public class RatProjectile : MonoBehaviour
             {
                 if (hitInfo.collider.TryGetComponent(out EnemyMovement enemy))
                 {
-
+                    audioSource.PlayOneShot(hitEnemySound);
+                }
+                else
+                {
+                    audioSource.PlayOneShot(hitWallSound);
                 }
                 transform.position = hitInfo.point + hitInfo.normal * 0.01f;
                 transform.parent = hitInfo.collider.transform;
