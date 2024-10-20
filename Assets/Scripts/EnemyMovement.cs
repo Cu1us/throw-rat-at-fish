@@ -2,7 +2,6 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine.Serialization;
 
 public class EnemyMovement : GridMovement
 {
@@ -82,13 +81,16 @@ public class EnemyMovement : GridMovement
         }
 
         if (options.Count == 0)
-        {
-            player.AttackedByEnemy(this);
             return;
-        }
         
         Cell nextCell = options.Aggregate((cellWithLowestTarget, cell) => cell.distanceFromTarget <= cellWithLowestTarget.distanceFromTarget ? cell : cellWithLowestTarget);
 
+        if (nextCell.distanceFromTarget <= 10)
+            player.AttackedByEnemy(this);
+
+        if (nextCell.distanceFromTarget < 10)
+            return;
+        
         if (nextCell.distanceFromTarget > maxDirectDistanceBeforeMove)
             return;
         
