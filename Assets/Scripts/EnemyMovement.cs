@@ -11,23 +11,15 @@ public class EnemyMovement : GridMovement
     [SerializeField] private int maxDirectDistanceBeforeMove = 100;
     [SerializeField] private int maxDistanceScore = 300;
 
-    private Vector3Int arrayOffset;
-
     private void Start()
     {
         AppendToGameManager();
-        CreateArrayOffset();
     }
 
     private void AppendToGameManager()
     {
         GameManager manager = FindObjectOfType<GameManager>();
         manager.enemies.Add(this);
-    }
-    
-    private void CreateArrayOffset()
-    {
-        arrayOffset = tilemap.cellBounds.size / 2;
     }
 
     private void OnEnable() => player.onMove.AddListener(FindLowestScore);
