@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="637abd54-c878-424c-8f67-4b81a91e2988" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RandomSprite.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RandomSprite.cs" afterDir="false" />
-    </list>
+    <list default="true" id="637abd54-c878-424c-8f67-4b81a91e2988" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -107,7 +105,7 @@
       <workItem from="1729405744011" duration="1792000" />
       <workItem from="1729413418974" duration="4665000" />
       <workItem from="1729422924839" duration="26000" />
-      <workItem from="1729422966639" duration="801000" />
+      <workItem from="1729422966639" duration="1344000" />
     </task>
     <servers />
   </component>

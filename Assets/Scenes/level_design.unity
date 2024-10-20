@@ -1844,6 +1844,11 @@ PrefabInstance:
       propertyPath: maxDirectDistanceBeforeMove
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 7387041969765198038, guid: 65fe8ddbc0e2dd04787ab07cb08a080b,
+        type: 3}
+      propertyPath: setAnimation
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
