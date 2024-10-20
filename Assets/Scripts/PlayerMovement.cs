@@ -37,6 +37,12 @@ public class PlayerMovement : GridMovement
         {
             return interactableTile.OnPlayerMoveOnto(this);
         }
+        List<EnemyMovement> enemies = FindFirstObjectByType<GameManager>().enemies;
+        foreach (EnemyMovement enemy in enemies)
+        {
+            if (enemy.position == position)
+                return TryWalkOnTileResult.StopButCanPassNextTime;
+        }
         return base.TryWalkOnTile(position);
     }
 
