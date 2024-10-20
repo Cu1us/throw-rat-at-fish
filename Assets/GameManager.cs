@@ -7,14 +7,16 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject pauseMenu;
     private bool isPaused;
-    
+
     [SerializeField] private PlayerMovement player;
+    [SerializeField] AudioSource RatAudioSource;
+    public bool RatPickedUp = false;
 
     private void Start()
     {
         pauseMenu.SetActive(false);
     }
-    
+
     private void Update()
     {
         if (Input.GetButtonDown("Pause"))
@@ -24,7 +26,7 @@ public class GameManager : MonoBehaviour
     private void PauseGame()
     {
         isPaused = !isPaused;
-        
+
         if (isPaused)
         {
             player.enabled = false;
@@ -37,5 +39,11 @@ public class GameManager : MonoBehaviour
             pauseMenu.SetActive(false);
             Time.timeScale = 1;
         }
+    }
+
+    public void PickupHelmet()
+    {
+        RatPickedUp = true;
+        FindObjectOfType<PlayerAttack>()?.PlayIntroMonologue();
     }
 }

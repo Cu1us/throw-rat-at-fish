@@ -11,8 +11,11 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] RatProjectile ratProjectile;
     [SerializeField] Animator HandAnimator;
     [SerializeField] AudioClip[] RandomChatterClips;
+    [SerializeField] AudioClip IntroMonologue;
+
     [SerializeField] float randomChatterMinCooldown;
     [SerializeField] float randomChatterMaxCooldown;
+    GameManager gameManager;
     float randomChatterCooldown;
     bool ratInHand = true;
 
@@ -23,7 +26,9 @@ public class PlayerAttack : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovement>();
         audioSource = GetComponent<AudioSource>();
+        gameManager = FindFirstObjectByType<GameManager>();
         ratInHand = true;
+        HandAnimator.Play("Hidden");
         ratProjectile.onReturnToPlayer += OnRatReturn;
     }
     void Update()
@@ -32,7 +37,7 @@ public class PlayerAttack : MonoBehaviour
         {
             Shoot();
         }
-        if (!audioSource.isPlaying)
+        if (!audioSource.isPlaying && gameManager.RatPickedUp)
         {
             randomChatterCooldown -= Time.deltaTime;
             if (randomChatterCooldown <= 0)
@@ -44,12 +49,13 @@ public class PlayerAttack : MonoBehaviour
     }
     void RandomChatter()
     {
+        if (!gameManager.RatPickedUp || !ratInHand) return;
         audioSource.clip = RandomChatterClips[Random.Range(0, RandomChatterClips.Length)];
         audioSource.Play();
     }
     void Shoot()
     {
-        if (ratInHand)
+        if (ratInHand && gameManager.RatPickedUp)
         {
             audioSource.Stop();
             ratProjectile.gameObject.SetActive(true);
@@ -73,5 +79,12 @@ public class PlayerAttack : MonoBehaviour
     void HideHand()
     {
         if (!ratInHand) HandAnimator.Play("Hidden");
+    }
+
+    public void PlayIntroMonologue()
+    {
+        if (ratInHand) HandAnimator.Play("Held");
+        audioSource.clip = IntroMonologue;
+        audioSource.Play();
     }
 }
