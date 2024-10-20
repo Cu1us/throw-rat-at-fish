@@ -399,7 +399,7 @@ PrefabInstance:
     - target: {fileID: 1665232129748594350, guid: a7b23230b12b0fe4aa24d226d3c32a17,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1665232129748594350, guid: a7b23230b12b0fe4aa24d226d3c32a17,
         type: 3}
@@ -409,7 +409,7 @@ PrefabInstance:
     - target: {fileID: 1665232129748594350, guid: a7b23230b12b0fe4aa24d226d3c32a17,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1665232129748594350, guid: a7b23230b12b0fe4aa24d226d3c32a17,
         type: 3}
@@ -460,6 +460,11 @@ PrefabInstance:
         type: 3}
       propertyPath: MaxHealth
       value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7403432197663452863, guid: a7b23230b12b0fe4aa24d226d3c32a17,
+        type: 3}
+      propertyPath: position.x
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7403432197663452863, guid: a7b23230b12b0fe4aa24d226d3c32a17,
         type: 3}
@@ -2780,6 +2785,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies: []
   pauseMenu: {fileID: 1855108368}
+  gameOver: {fileID: 1196514422}
   player: {fileID: 1993014025}
   RatAudioSource: {fileID: 1887785705}
   RatPickedUp: 0
@@ -4419,6 +4425,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46b2ff4e168106b40b9658c306fb745d, type: 3}
+--- !u!1 &1196514422 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7839208527397149385, guid: a6c72ea70f1459c4590c39597d236160,
+    type: 3}
+  m_PrefabInstance: {fileID: 230533241713086631}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1223416146
 PrefabInstance:
   m_ObjectHideFlags: 0
