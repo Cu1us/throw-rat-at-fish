@@ -5,10 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="637abd54-c878-424c-8f67-4b81a91e2988" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.throw-rat-at-fish/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.throw-rat-at-fish/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Tilesets/LabTileset.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Tilesets/LabTileset.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/shader/GameScreen.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/shader/GameScreen.renderTexture" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level 1.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyMovement.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -100,6 +96,7 @@
       <workItem from="1729405548697" duration="30000" />
       <workItem from="1729405595963" duration="133000" />
       <workItem from="1729405744011" duration="1792000" />
+      <workItem from="1729413418974" duration="413000" />
     </task>
     <servers />
   </component>

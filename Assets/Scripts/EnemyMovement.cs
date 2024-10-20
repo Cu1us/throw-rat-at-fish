@@ -2,10 +2,13 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.Serialization;
 
 public class EnemyMovement : GridMovement
 {
     [SerializeField] private PlayerMovement player;
+
+    [FormerlySerializedAs("maxDirectDistanceToMove")] [SerializeField] private int maxDirectDistanceBeforeMove = 100;
 
     private Vector3Int arrayOffset;
 
@@ -25,6 +28,11 @@ public class EnemyMovement : GridMovement
     
     private void FindLowestScore()
     {
+        int currentDistance = CalculateDistance(position, player.position);
+
+        if (currentDistance > maxDirectDistanceBeforeMove)
+            return;
+        
         Cell[,] openCells = new Cell[tilemap.cellBounds.size.x, tilemap.cellBounds.size.y];
         Cell[,] closedCells = new Cell[tilemap.cellBounds.size.x, tilemap.cellBounds.size.y];
         
@@ -79,6 +87,9 @@ public class EnemyMovement : GridMovement
         }
         
         Cell nextCell = options.Aggregate((cellWithLowestTarget, cell) => cell.distanceFromTarget <= cellWithLowestTarget.distanceFromTarget ? cell : cellWithLowestTarget);
+
+        if (nextCell.distanceFromTarget > maxDirectDistanceBeforeMove)
+            return;
         
         Vector3Int direction = nextCell.position - startCell.position;
         Move(direction);
